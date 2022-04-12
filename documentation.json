@@ -60,14 +60,14 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-27ddbfcc0c9ff9d948aaa647c19a51955063af2ac88840a637d753782d98cad96087ed437b49ec7ce37f6e9771a181e1ae3f6223063949427fed76530e7b8e14",
+            "id": "component-ButtonComponent-d004ef6d879d42cca904c625e08f4c1ba41eb952d670cc26a19afc0d400735b82d92233fae16d89debe895f545557362d59cdbf71dd3b14b6eb1aeabd73e9b95",
             "file": "src/app/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-button",
+            "selector": "telco-button",
             "styleUrls": [
                 "./button.component.scss"
             ],
@@ -81,7 +81,7 @@
                     "name": "backgroundColor",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 10,
+                    "line": 11,
                     "type": "string",
                     "decorators": []
                 },
@@ -90,7 +90,7 @@
                     "defaultValue": "'10px'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
+                    "line": 18,
                     "type": "string",
                     "decorators": []
                 },
@@ -99,7 +99,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 13,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -108,7 +108,7 @@
                     "defaultValue": "'../../assets/perm_identity_white_48dp.svg'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 15,
                     "type": "string",
                     "decorators": []
                 },
@@ -117,7 +117,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 16,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -126,7 +126,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 11,
+                    "line": 12,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -135,7 +135,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 14,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -144,7 +144,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 9,
+                    "line": 10,
                     "type": "string",
                     "decorators": []
                 }
@@ -152,10 +152,10 @@
             "outputsClass": [
                 {
                     "name": "buttonClick",
-                    "defaultValue": "new EventEmitter<>()",
+                    "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 16,
+                    "line": 17,
                     "type": "EventEmitter"
                 }
             ],
@@ -167,7 +167,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 21,
+                    "line": 22,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -179,11 +179,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss'],\n})\nexport class ButtonComponent implements OnInit {\n  @Input() title: string = '';\n  @Input() backgroundColor?: string;\n  @Input() primaryButton?: boolean = false;\n  @Input() displayIcon: boolean = false;\n  @Input() roundedButton: boolean = true;\n  @Input() iconLink: string = '../../assets/perm_identity_white_48dp.svg';\n  @Input() iconRight: boolean = false;\n  @Output() buttonClick = new EventEmitter<>();\n  @Input() buttonFontSize: string = '10px';\n\n  constructor() {}\n\n  buttonClicked() {\n    this.buttonClick.emit();\n  }\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'telco-button',\n  templateUrl: './button.component.html',\n  styleUrls: ['./button.component.scss'],\n})\n\nexport class ButtonComponent {\n  @Input() title: string = '';\n  @Input() backgroundColor?: string;\n  @Input() primaryButton?: boolean = false;\n  @Input() displayIcon: boolean = false;\n  @Input() roundedButton: boolean = true;\n  @Input() iconLink: string = '../../assets/perm_identity_white_48dp.svg';\n  @Input() iconRight: boolean = false;\n  @Output() buttonClick = new EventEmitter<any>();\n  @Input() buttonFontSize: string = '10px';\n\n  constructor() {}\n\n  buttonClicked() {\n    this.buttonClick.emit();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "button {\r\n  padding: 0 0.5rem;\r\n}\r\n.primary {\r\n  background-color: #660099;\r\n  color: white;\r\n}\r\n.basicStyle {\r\n  color: black;\r\n  background-color: aqua;\r\n}\r\n\r\n.basic-layout {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n}\r\n\r\n.hidden {\r\n  display: none;\r\n}\r\n.rounded {\r\n  border-radius: 4rem;\r\n}\r\n\r\n.iconRightClass {\r\n  flex-direction: row-reverse;\r\n}\r\n",
+                    "data": "button {\n  padding: 0 0.5rem;\n}\n.primary {\n  background-color: #660099;\n  color: white;\n}\n.basicStyle {\n  color: black;\n  background-color: aqua;\n}\n\n.basic-layout {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.hidden {\n  display: none;\n}\n.rounded {\n  border-radius: 4rem;\n}\n\n.iconRightClass {\n  flex-direction: row-reverse;\n}\n",
                     "styleUrl": "./button.component.scss"
                 }
             ],
@@ -194,11 +194,8 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 17
+                "line": 18
             },
-            "implements": [
-                "OnInit"
-            ],
             "templateData": "<button\n  [ngStyle]=\"{\n    'background-color': backgroundColor\n  }\"\n  (click)=\"buttonClicked()\"\n  class=\"material-icons-outlined basic-layout\"\n  [ngClass]=\"{\n    primary: primaryButton,\n    rounded: roundedButton,\n    basicStyle: !primaryButton,\n    iconRightClass: iconRight\n  }\"\n>\n  <img [src]=\"iconLink\" alt=\"\" [ngClass]=\"{ hidden: !displayIcon }\" />\n  <h2 [ngStyle]=\"{ 'font-size': buttonFontSize }\">{{ title }}</h2>\n</button>\n"
         }
     ],
@@ -310,7 +307,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\r\n  Component: ButtonComponent,\r\n  props: args,\r\n})"
+                "defaultValue": "(args: ButtonComponent) => ({\n  Component: ButtonComponent,\n  props: args,\n})"
             }
         ],
         "functions": [],
@@ -381,7 +378,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonComponent>",
-                    "defaultValue": "(args: ButtonComponent) => ({\r\n  Component: ButtonComponent,\r\n  props: args,\r\n})"
+                    "defaultValue": "(args: ButtonComponent) => ({\n  Component: ButtonComponent,\n  props: args,\n})"
                 }
             ]
         },
