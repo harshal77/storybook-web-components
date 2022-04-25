@@ -17,7 +17,7 @@ export class ButtonComponent {
   @Output() buttonClick = new EventEmitter<any>();
   @Input() buttonFontSize: string = '10px';
 
-  constructor() {}
+
 
   buttonClicked() {
     this.buttonClick.emit();

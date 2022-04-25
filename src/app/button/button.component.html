@@ -1,16 +1,24 @@
 <button
-  [ngStyle]="{
-    'background-color': backgroundColor
-  }"
-  (click)="buttonClicked()"
-  class="material-icons-outlined basic-layout pointer"
-  [ngClass]="{
-    primary: primaryButton,
-    rounded: roundedButton,
-    basicStyle: !primaryButton,
-    iconRightClass: iconRight
-  }"
+	[ngStyle]="{
+		'background-color': backgroundColor
+	}"
+	(click)="buttonClicked()"
+	class="material-icons-outlined basic-layout pointer"
+	[ngClass]="{
+		primary: primaryButton,
+		rounded: roundedButton,
+		basicStyle: !primaryButton,
+		iconRightClass: iconRight
+	}"
 >
-  <img [src]="iconLink" alt="" [ngClass]="{ hidden: !displayIcon }" />
-  <h2 [ngStyle]="{ 'font-size': buttonFontSize }">{{ title }}</h2>
+
+
+	<img [src]="iconLink" alt="" [ngClass]="{ hidden: !displayIcon }" />
+
+
+	<h2 [ngStyle]="{ 'font-size': buttonFontSize }">{{ title }}</h2>
+
+
 </button>
+
+

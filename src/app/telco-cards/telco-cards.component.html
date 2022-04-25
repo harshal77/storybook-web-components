@@ -1,0 +1,29 @@
+<div class="card-container flex-row">
+	<div class="card">
+		<div class="card-part-1 flex-row">
+			<img [src]="cardIcon" alt="" />
+		</div>
+		<div class="card-part-2 flex-column">
+			<div class="part-2-upper flex-row">
+				<h2>{{ cardTitle }}</h2>
+			</div>
+			<div class="part-2-lower flex-row">
+				<div class="lower-left flex-row">
+					<h6>{{ cardSubtitle }}</h6>
+				</div>
+
+				<div class="lower-right flex-row green-background" *ngIf="cardSubtitlePercentage >= 0">
+					<h5>{{ cardSubtitlePercentage }}%</h5>
+					<img [src]="positivePercentageIcon" alt="" />
+				</div>
+				<div class="lower-right red-background" *ngIf="cardSubtitlePercentage < 0">
+					<h5 class="red">{{ cardSubtitlePercentage }}%</h5>
+					<img [src]="negativePercentageIcon" alt="" />
+				</div>
+			</div>
+		</div>
+		<div class="card-part-3 flex-column">
+			<p (click)="viewAllClick()">View All</p>
+		</div>
+	</div>
+</div>

@@ -1,28 +1,25 @@
 button {
-  padding: 0 0.5rem;
+	padding: 0 0.5rem;
 }
 .primary {
-  background-color: #660099;
-  color: white;
+	background-color: #660099;
+	color: white;
 }
 .basicStyle {
-  color: black;
-  background-color: aqua;
+	color: black;
+	background-color: aqua;
 }
 
 .basic-layout {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.hidden {
-  display: none;
-}
 .rounded {
-  border-radius: 4rem;
+	border-radius: 4rem;
 }
 
 .iconRightClass {
-  flex-direction: row-reverse;
+	flex-direction: row-reverse;
 }

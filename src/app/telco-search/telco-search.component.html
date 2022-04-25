@@ -1,0 +1,4 @@
+<div class="search" [ngStyle]="{'background': backgroundColor,'border-color':borderColor,'border-radius':borderRadius}">
+  <img [src]="iconUrl" alt="icon" (click)="searchClick()">
+  <input type="text" [placeholder]="placeholder" [(ngModel)]="searchText" [ngStyle]="{'background': backgroundColor,'font-family':fontFamily}">
+</div>
