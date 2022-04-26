@@ -5,13 +5,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TelcoCardsComponent } from 'src/app/telco-cards/telco-cards.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 export default {
 	title: 'Iauro/Telco-Card',
 	component: TelcoCardsComponent,
 	decorators: [
 		moduleMetadata({
 			declarations: [TelcoCardsComponent],
-			imports: [CommonModule, BrowserModule, MatIconModule, MatButtonModule, FormsModule, ReactiveFormsModule],
+			imports: [CommonModule, BrowserModule, MatIconModule, MatButtonModule, FormsModule, ReactiveFormsModule, FlexLayoutModule],
 		}),
 	],
 } as Meta;

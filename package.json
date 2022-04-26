@@ -30,7 +30,9 @@
     "@googlemaps/js-api-loader": "^1.14.1",
     "@ng-select/ng-select": "^7.4.0",
     "@types/google.maps": "^3.48.6",
+    "angular-plotly.js": "^4.0.4",
     "google-maps": "^4.3.3",
+    "plotly.js-dist-min": "^2.11.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -51,6 +53,7 @@
     "@storybook/testing-library": "^0.0.9",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
+    "@types/plotly.js-dist-min": "^2.3.0",
     "babel-loader": "^8.2.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-html": "^6.2.0",

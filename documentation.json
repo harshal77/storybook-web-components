@@ -384,7 +384,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<app-telco-maps></app-telco-maps>\r\n"
+            "templateData": "<app-telco-cards></app-telco-cards>\r\n"
         },
         {
             "name": "ButtonComponent",
@@ -519,6 +519,78 @@
             "templateData": "<button\r\n\t[ngStyle]=\"{\r\n\t\t'background-color': backgroundColor\r\n\t}\"\r\n\t(click)=\"buttonClicked()\"\r\n\tclass=\"material-icons-outlined basic-layout pointer\"\r\n\t[ngClass]=\"{\r\n\t\tprimary: primaryButton,\r\n\t\trounded: roundedButton,\r\n\t\tbasicStyle: !primaryButton,\r\n\t\ticonRightClass: iconRight\r\n\t}\"\r\n>\r\n\r\n\r\n\t<img [src]=\"iconLink\" alt=\"\" [ngClass]=\"{ hidden: !displayIcon }\" />\r\n\r\n\r\n\t<h2 [ngStyle]=\"{ 'font-size': buttonFontSize }\">{{ title }}</h2>\r\n\r\n\r\n</button>\r\n\r\n\r\n"
         },
         {
+            "name": "TelcoBarChartComponent",
+            "id": "component-TelcoBarChartComponent-8e4cfdd46d40bb485a09c07abf9291fd7191b1352b45131bc492efdd1780abdce9c6192ff06452298d6e4f8aa869767f6d7f0b19777720d44209c216701c5c45",
+            "file": "src/app/telco-charts/telco-bar-chart/telco-bar-chart.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-telco-bar-chart",
+            "styleUrls": [
+                "./telco-bar-chart.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./telco-bar-chart.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "barChartData",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "any",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { PlotlyModule } from 'angular-plotly.js';\nimport * as PlotlyJS from 'plotly.js-dist-min';\n\nPlotlyModule.plotlyjs = PlotlyJS;\n\n@Component({\n\tselector: 'app-telco-bar-chart',\n\ttemplateUrl: './telco-bar-chart.component.html',\n\tstyleUrls: ['./telco-bar-chart.component.scss'],\n})\nexport class TelcoBarChartComponent implements OnInit {\n\t@Input() barChartData: any = {};\n\tconstructor() {}\n\n\tngOnInit(): void {}\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./telco-bar-chart.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 13
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<plotly-plot [data]=\"barChartData.data\" [layout]=\"barChartData.layout\"></plotly-plot>\n"
+        },
+        {
             "name": "TelcoCardsComponent",
             "id": "component-TelcoCardsComponent-20fe95ddbbeb7a434cc11c58beddd175539b951e002006715b3d1e85b54b5304ff7f9af5caf4a31760deddc28f92218730427576cecbddb61fc56e100124991d",
             "file": "src/app/telco-cards/telco-cards.component.ts",
@@ -626,7 +698,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "* {\r\n\tbox-sizing: border-box;\r\n\tfont-family: 'Noto Sans', sans-serif;\r\n\tfont-style: normal;\r\n}\r\nh5 {\r\n\tfont-weight: 700;\r\n}\r\n.flex-row {\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n}\r\n\r\n.flex-column {\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n\r\n.card-container {\r\n\tmax-width: 291px;\r\n\tmax-height: 86px;\r\n\tpadding: 1.2rem;\r\n\tjustify-content: center;\r\n\tbackground: #ffffff;\r\n\tborder: 1px solid #e2e7ef;\r\n\tbox-sizing: border-box;\r\n\tborder-radius: 4px;\r\n\tfont-size: 16rem;\r\n}\r\n\r\n.card {\r\n\twidth: 90%;\r\n\tdisplay: flex;\r\n}\r\n\r\n.card-part-1 {\r\n\twidth: 15%;\r\n\talign-items: center;\r\n\tjustify-content: flex-start;\r\n}\r\n\r\n.card-part-2 {\r\n\twidth: 60%;\r\n\theight: 100%;\r\n\tpadding-left: 0.4rem;\r\n\t.part-2-upper {\r\n\t\theight: 50%;\r\n\t\tjustify-content: flex-start;\r\n\t\talign-items: center;\r\n\t\th2 {\r\n\t\t\tfont-size: 1.3rem;\r\n\t\t\tfont-weight: 400;\r\n\t\t\talign-items: center;\r\n\t\t\tcolor: #636a75;\r\n\t\t}\r\n\t}\r\n\t.part-2-lower {\r\n\t\theight: 50%;\r\n\t\talign-items: center;\r\n\t\t.lower-left {\r\n\t\t\twidth: 40%;\r\n\t\t\theight: 100%;\r\n\t\t\talign-items: center;\r\n\t\t\tjustify-content: flex-start;\r\n\t\t\th6 {\r\n\t\t\t\tpadding-top: 0.4rem;\r\n\t\t\t\tfont-size: 1.8rem;\r\n\t\t\t\tfont-weight: 700;\r\n\t\t\t\tcolor: #660099;\r\n\t\t\t}\r\n\t\t}\r\n\t\t.lower-right {\r\n\t\t\theight: 100%;\r\n\t\t\twidth: 50%;\r\n\t\t\tborder-radius: 2px;\r\n\t\t\tjustify-content: flex-start;\r\n\t\t\talign-items: center;\r\n\t\t\tmargin-top: 0.4rem;\r\n\t\t\tmargin-left: 0.2rem;\r\n\t\t\th5 {\r\n\t\t\t\tmargin-left: 0.5rem;\r\n\t\t\t\tfont-size: 1rem;\r\n\t\t\t}\r\n\t\t\timg {\r\n\t\t\t\twidth: 40%;\r\n\t\t\t\theight: 60%;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}\r\n\r\n.green-background {\r\n\tbackground: #e0f2ee;\r\n\th5 {\r\n\t\tcolor: #36947d;\r\n\t}\r\n}\r\n.red-background {\r\n\tbackground: rgba(225, 38, 38, 0.1);\r\n\th5 {\r\n\t\tcolor: #e12626;\r\n\t}\r\n}\r\n\r\n.card-part-3 {\r\n\twidth: 25%;\r\n\theight: 100%;\r\n\tjustify-content: center;\r\n\talign-items: center;\r\n\tp {\r\n\t\tpadding-top: 3rem;\r\n\t\tpadding-left: 0.7rem;\r\n\t\tfont-weight: 400;\r\n\t\tfont-size: 1rem;\r\n\t\tcolor: #2f54eb;\r\n\t\ttext-align: end;\r\n\t}\r\n}\r\n",
+                    "data": "html {\r\n\tfont-size: 14px;\r\n\tfont-family: 'Noto Sans', sans-serif;\r\n\tfont-style: normal;\r\n}\r\np {\r\n\tmargin: 0;\r\n}\r\n\r\n.card {\r\n\tpadding: 1rem 1.5rem;\r\n\tbackground: #ffffff;\r\n\tborder: 1px solid #e2e7ef;\r\n\tborder-radius: 0.2rem;\r\n\twidth: 291px;\r\n\theight: 86px;\r\n}\r\n\r\n.item-1-upper {\r\n\theight: fit-content;\r\n\tp {\r\n\t\tfont-size: 1rem;\r\n\t\tfont-weight: 400;\r\n\t\tcolor: #636a75;\r\n\t}\r\n}\r\n\r\n.lower-left {\r\n\tp {\r\n\t\tfont-weight: 700;\r\n\t\tfont-size: 1.5rem;\r\n\t\tcolor: #660099;\r\n\t}\r\n}\r\n\r\n.lower-right {\r\n\tbackground: #e0f2ee;\r\n\tborder-radius: 0.1rem;\r\n\theight: 1.8rem;\r\n\tp {\r\n\t\tfont-weight: 700;\r\n\t\tfont-size: 1rem;\r\n\t\ttext-align: center;\r\n\t\tcolor: #36947d;\r\n\t}\r\n}\r\n\r\n.red {\r\n\tbackground: rgba(225, 38, 38, 0.1);\r\n\tp {\r\n\t\tcolor: #e12626;\r\n\t}\r\n}\r\n\r\n.card-item-3 {\r\n\tmin-height: 54px;\r\n\tp {\r\n\t\tpadding: 0.2rem;\r\n\t\tfont-weight: 400;\r\n\t\tfont-size: 1rem;\r\n\t\ttext-align: center;\r\n\t\tcolor: #2f54eb;\r\n\t}\r\n}\r\n",
                     "styleUrl": "./telco-cards.component.scss"
                 }
             ],
@@ -639,7 +711,7 @@
                 "args": [],
                 "line": 16
             },
-            "templateData": "<div class=\"card-container flex-row\">\n\t<div class=\"card\">\n\t\t<div class=\"card-part-1 flex-row\">\n\t\t\t<img [src]=\"cardIcon\" alt=\"\" />\n\t\t</div>\n\t\t<div class=\"card-part-2 flex-column\">\n\t\t\t<div class=\"part-2-upper flex-row\">\n\t\t\t\t<h2>{{ cardTitle }}</h2>\n\t\t\t</div>\n\t\t\t<div class=\"part-2-lower flex-row\">\n\t\t\t\t<div class=\"lower-left flex-row\">\n\t\t\t\t\t<h6>{{ cardSubtitle }}</h6>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"lower-right flex-row green-background\" *ngIf=\"cardSubtitlePercentage >= 0\">\n\t\t\t\t\t<h5>{{ cardSubtitlePercentage }}%</h5>\n\t\t\t\t\t<img [src]=\"positivePercentageIcon\" alt=\"\" />\n\t\t\t\t</div>\n\t\t\t\t<div class=\"lower-right red-background\" *ngIf=\"cardSubtitlePercentage < 0\">\n\t\t\t\t\t<h5 class=\"red\">{{ cardSubtitlePercentage }}%</h5>\n\t\t\t\t\t<img [src]=\"negativePercentageIcon\" alt=\"\" />\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"card-part-3 flex-column\">\n\t\t\t<p (click)=\"viewAllClick()\">View All</p>\n\t\t</div>\n\t</div>\n</div>\n"
+            "templateData": "<div fxLayout=\"row\" fxLayoutAlign=\"center center\" class=\"card\">\n\t<div fxLayout=\"row\" fxFlex=\"100\" fxLayoutAlign=\"start center\" class=\"card-items\">\n\t\t<div class=\"card-item-1\" fxFlex=\"20\" fxLayoutAlign=\"center center\">\n\t\t\t<img [src]=\"cardIcon\" alt=\"\" />\n\t\t</div>\n\n\t\t<div class=\"card-item-2\" fxFlex=\"48\" fxLayout=\"column\" fxLayoutGap=\"4px\">\n\t\t\t<div class=\"item-1-upper\" fxFlex=\"53\">\n\t\t\t\t<p>{{ cardTitle }}</p>\n\t\t\t</div>\n\n\t\t\t<div class=\"item-2-lower\" fxLayout=\"row\" fxLayoutGap=\"6px\" fxFlex=\"47\" fxLayoutAlign=\"start center\">\n\t\t\t\t<div fxFlex=\"46\" class=\"lower-left\" fxLayout=\"start center\">\n\t\t\t\t\t<p>{{ cardSubtitle }}</p>\n\t\t\t\t</div>\n\n\t\t\t\t<!-- if the given percentage is greater than 0 -->\n\t\t\t\t<div fxFlex=\"52\" class=\"lower-right\" fxLayout=\"row\" fxLayoutAlign=\"space-evenly center\" *ngIf=\"cardSubtitlePercentage >= 0\">\n\t\t\t\t\t<p>{{ cardSubtitlePercentage }}%</p>\n\t\t\t\t\t<img [src]=\"positivePercentageIcon\" alt=\"\" />\n\t\t\t\t</div>\n\n\t\t\t\t<!-- if it is less than 0 -->\n\t\t\t\t<div fxFlex=\"52\" class=\"lower-right red\" fxLayout=\"row\" fxLayoutAlign=\"space-evenly center\" *ngIf=\"cardSubtitlePercentage < 0\">\n\t\t\t\t\t<p>{{ cardSubtitlePercentage }}%</p>\n\t\t\t\t\t<img [src]=\"negativePercentageIcon\" alt=\"\" />\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"card-item-3\" fxFlex=\"32\" fxLayout=\"row\" fxLayoutAlign=\"end end\">\n\t\t\t<p (click)=\"viewAllClick()\">View All</p>\n\t\t</div>\n\t</div>\n</div>\n"
         },
         {
             "name": "TelcoListComponent",
@@ -2230,6 +2302,64 @@
             "templateData": "<div class=\"map-wrapper\">\n\t<div fxFlex=\"1 1 100%\" #map class=\"map-container\"></div>\n</div>\n"
         },
         {
+            "name": "TelcoPieChartComponent",
+            "id": "component-TelcoPieChartComponent-2023060dc025a471f3bc433424eb2287c04bd59767428b65a7c4ef3cd057d1a8d79f78a8da56be62ed74aec8acbf0d65860ae616edc2441269d812e5f9825c43",
+            "file": "src/app/telco-charts/telco-pie-chart/telco-pie-chart.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-telco-pie-chart",
+            "styleUrls": [
+                "./telco-pie-chart.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./telco-pie-chart.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "pieChartData",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "any",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\n\n@Component({\n\tselector: 'app-telco-pie-chart',\n\ttemplateUrl: './telco-pie-chart.component.html',\n\tstyleUrls: ['./telco-pie-chart.component.scss'],\n})\nexport class TelcoPieChartComponent {\n\t@Input() pieChartData: any = {};\n\n\tconstructor() {}\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./telco-pie-chart.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 9
+            },
+            "templateData": "<div class=\"anvil-role-semi_pie_chart\">\n\t<plotly-plot\n\t\t[data]=\"pieChartData.data\"\n\t\t[layout]=\"pieChartData.layout\"\n\t\t[useResizeHandler]=\"true\"\n\t\t[style]=\"{ position: 'relative', width: '100%', height: '100%' }\"></plotly-plot>\n</div>\n"
+        },
+        {
             "name": "TelcoSearchComponent",
             "id": "component-TelcoSearchComponent-956c136ad63830c11ac736b00871ea1ca4f8847b272ad9430e39489eac2abba5910f4d4be3085dab179df9f6da63211a20a33ece5ea2e6273e5654759e8da9ee",
             "file": "src/app/telco-search/telco-search.component.ts",
@@ -2381,13 +2511,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-f1ecc5346d2f87821891a5e16910a1f60a3c39aa4223137704eec62dd5a91505febb0bb9ad88306da4c38c3761e2b641ec789273d03a9da1326d22d742e28801",
+            "id": "module-AppModule-235f16b062b9101c48cf34d008da38501773e03e311bfdab04a3353a32bf676b0d108a229746679931bc88752a226f425f82e3abdf05f595209f7ec0f94b6415",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { AppComponent } from './app.component';\r\nimport { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { NgSelectModule } from '@ng-select/ng-select';\r\nimport { ButtonComponent } from './button/button.component';\r\nimport { TelcoListComponent } from './telco-list/telco-list.component';\r\nimport { TelcoSearchComponent } from './telco-search/telco-search.component';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { TelcoCardsComponent } from './telco-cards/telco-cards.component';\r\nimport { TelcoMapsComponent } from './telco-maps/telco-maps.component';\r\nimport { } from \"google-maps\";\r\n@NgModule({\r\n\tdeclarations: [AppComponent, ButtonComponent, TelcoListComponent, TelcoSearchComponent, TelcoCardsComponent, TelcoMapsComponent],\r\n\timports: [BrowserModule, NgSelectModule, FormsModule, BrowserAnimationsModule, MatIconModule],\r\n\tproviders: [],\r\n\tbootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { AppComponent } from './app.component';\r\nimport { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { NgSelectModule } from '@ng-select/ng-select';\r\nimport { ButtonComponent } from './button/button.component';\r\nimport { TelcoListComponent } from './telco-list/telco-list.component';\r\nimport { TelcoSearchComponent } from './telco-search/telco-search.component';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { FlexLayoutModule } from '@angular/flex-layout';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { TelcoCardsComponent } from './telco-cards/telco-cards.component';\r\nimport { TelcoMapsComponent } from './telco-maps/telco-maps.component';\r\nimport {} from 'google-maps';\r\nimport { TelcoBarChartComponent } from './telco-charts/telco-bar-chart/telco-bar-chart.component';\r\nimport { TelcoPieChartComponent } from './telco-charts/telco-pie-chart/telco-pie-chart.component';\r\n\r\nimport { PlotlyViaCDNModule, PlotlyViaWindowModule } from 'angular-plotly.js';\r\n\r\n@NgModule({\r\n\tdeclarations: [\r\n\t\tAppComponent,\r\n\t\tButtonComponent,\r\n\t\tTelcoListComponent,\r\n\t\tTelcoSearchComponent,\r\n\t\tTelcoCardsComponent,\r\n\t\tTelcoMapsComponent,\r\n\t\tTelcoBarChartComponent,\r\n\t\tTelcoPieChartComponent,\r\n\t],\r\n\timports: [\r\n\t\tBrowserModule,\r\n\t\tNgSelectModule,\r\n\t\tFormsModule,\r\n\t\tBrowserAnimationsModule,\r\n\t\tMatIconModule,\r\n\t\tPlotlyViaCDNModule,\r\n\t\tPlotlyViaWindowModule,\r\n\t\tFlexLayoutModule,\r\n\t],\r\n\tproviders: [],\r\n\tbootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -2403,6 +2533,9 @@
                             "name": "ButtonComponent"
                         },
                         {
+                            "name": "TelcoBarChartComponent"
+                        },
+                        {
                             "name": "TelcoCardsComponent"
                         },
                         {
@@ -2410,6 +2543,9 @@
                         },
                         {
                             "name": "TelcoMapsComponent"
+                        },
+                        {
+                            "name": "TelcoPieChartComponent"
                         },
                         {
                             "name": "TelcoSearchComponent"
@@ -2470,6 +2606,16 @@
                 "deprecationMessage": "",
                 "type": "IMap",
                 "defaultValue": "{\r\n\tconfig: {\r\n\t\ticonDefault: 'SITE',\r\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\r\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\r\n\t\ticonColor: pcolors['application']['palette-2'],\r\n\t\ticonAnchorX: 11,\r\n\t\ticonAnchorY: 11,\r\n\t\tzoomLevelToChangeIcon: 16,\r\n\t\tcenterOnMapUpdate: true,\r\n\t\tshowMesh: true,\r\n\t},\r\n\tmarkers: generateMarkers(1000, [30.6052695, 33.7522604], [38.431485, 34.9796919]),\r\n}"
+            },
+            {
+                "name": "Bar",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-bar-chart.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "Basic",
@@ -2600,6 +2746,16 @@
                 "defaultValue": "_palette"
             },
             {
+                "name": "PieChart",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-pie-chart.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "primaryButton",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2642,11 +2798,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/telco-maps.stories.ts",
+                "file": "src/stories/telco-bar-chart.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<TelcoMapsComponent>",
-                "defaultValue": "(args: TelcoMapsComponent) => ({\r\n\tcomponent: TelcoMapsComponent,\r\n\tprops: args,\r\n})"
+                "type": "Story<TelcoBarChartComponent>",
+                "defaultValue": "(args: TelcoBarChartComponent) => ({\r\n\tprops: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -2657,6 +2813,26 @@
                 "deprecationMessage": "",
                 "type": "Story<TelcoListComponent>",
                 "defaultValue": "(args: TelcoListComponent) => ({\r\n\tComponent: TelcoListComponent,\r\n\tprops: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-pie-chart.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TelcoPieChartComponent>",
+                "defaultValue": "(args: TelcoPieChartComponent) => ({\r\n\tprops: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-maps.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TelcoMapsComponent>",
+                "defaultValue": "(args: TelcoMapsComponent) => ({\r\n\tcomponent: TelcoMapsComponent,\r\n\tprops: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -2836,6 +3012,28 @@
                     "defaultValue": "(args: TelcoMapsComponent) => ({\r\n\tcomponent: TelcoMapsComponent,\r\n\tprops: args,\r\n})"
                 }
             ],
+            "src/stories/telco-bar-chart.stories.ts": [
+                {
+                    "name": "Bar",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/telco-bar-chart.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/telco-bar-chart.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TelcoBarChartComponent>",
+                    "defaultValue": "(args: TelcoBarChartComponent) => ({\r\n\tprops: args,\r\n})"
+                }
+            ],
             "src/stories/telco-card.stories.ts": [
                 {
                     "name": "Basic",
@@ -2965,6 +3163,28 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "any"
+                }
+            ],
+            "src/stories/telco-pie-chart.stories.ts": [
+                {
+                    "name": "PieChart",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/telco-pie-chart.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/telco-pie-chart.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TelcoPieChartComponent>",
+                    "defaultValue": "(args: TelcoPieChartComponent) => ({\r\n\tprops: args,\r\n})"
                 }
             ],
             "src/stories/button.stories.ts": [
@@ -3102,6 +3322,24 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/telco-charts/telco-bar-chart/telco-bar-chart.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TelcoBarChartComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/telco-charts/telco-pie-chart/telco-pie-chart.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TelcoPieChartComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/telco-list/telco-list.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -3225,6 +3463,26 @@
             },
             {
                 "filePath": "src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-bar-chart.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Bar",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-bar-chart.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -3365,6 +3623,26 @@
             },
             {
                 "filePath": "src/stories/telco-maps.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-pie-chart.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PieChart",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-pie-chart.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

@@ -1,118 +1,64 @@
-* {
-	box-sizing: border-box;
+html {
+	font-size: 14px;
 	font-family: 'Noto Sans', sans-serif;
 	font-style: normal;
 }
-h5 {
-	font-weight: 700;
-}
-.flex-row {
-	display: flex;
-	flex-direction: row;
-}
-
-.flex-column {
-	display: flex;
-	flex-direction: column;
-}
-
-.card-container {
-	max-width: 291px;
-	max-height: 86px;
-	padding: 1.2rem;
-	justify-content: center;
-	background: #ffffff;
-	border: 1px solid #e2e7ef;
-	box-sizing: border-box;
-	border-radius: 4px;
-	font-size: 16rem;
+p {
+	margin: 0;
 }
 
 .card {
-	width: 90%;
-	display: flex;
+	padding: 1rem 1.5rem;
+	background: #ffffff;
+	border: 1px solid #e2e7ef;
+	border-radius: 0.2rem;
+	width: 291px;
+	height: 86px;
 }
 
-.card-part-1 {
-	width: 15%;
-	align-items: center;
-	justify-content: flex-start;
-}
-
-.card-part-2 {
-	width: 60%;
-	height: 100%;
-	padding-left: 0.4rem;
-	.part-2-upper {
-		height: 50%;
-		justify-content: flex-start;
-		align-items: center;
-		h2 {
-			font-size: 1.3rem;
-			font-weight: 400;
-			align-items: center;
-			color: #636a75;
-		}
-	}
-	.part-2-lower {
-		height: 50%;
-		align-items: center;
-		.lower-left {
-			width: 40%;
-			height: 100%;
-			align-items: center;
-			justify-content: flex-start;
-			h6 {
-				padding-top: 0.4rem;
-				font-size: 1.8rem;
-				font-weight: 700;
-				color: #660099;
-			}
-		}
-		.lower-right {
-			height: 100%;
-			width: 50%;
-			border-radius: 2px;
-			justify-content: flex-start;
-			align-items: center;
-			margin-top: 0.4rem;
-			margin-left: 0.2rem;
-			h5 {
-				margin-left: 0.5rem;
-				font-size: 1rem;
-			}
-			img {
-				width: 40%;
-				height: 60%;
-			}
-		}
+.item-1-upper {
+	height: fit-content;
+	p {
+		font-size: 1rem;
+		font-weight: 400;
+		color: #636a75;
 	}
 }
 
-.green-background {
+.lower-left {
+	p {
+		font-weight: 700;
+		font-size: 1.5rem;
+		color: #660099;
+	}
+}
+
+.lower-right {
 	background: #e0f2ee;
-	h5 {
+	border-radius: 0.1rem;
+	height: 1.8rem;
+	p {
+		font-weight: 700;
+		font-size: 1rem;
+		text-align: center;
 		color: #36947d;
 	}
 }
-.red-background {
+
+.red {
 	background: rgba(225, 38, 38, 0.1);
-	h5 {
+	p {
 		color: #e12626;
 	}
 }
 
-.card-part-3 {
-	width: 25%;
-	height: 100%;
-	justify-content: center;
-	align-items: center;
+.card-item-3 {
+	min-height: 54px;
 	p {
-		padding-top: 3rem;
-		padding-left: 0.7rem;
+		padding: 0.2rem;
 		font-weight: 400;
 		font-size: 1rem;
+		text-align: center;
 		color: #2f54eb;
-		text-align: end;
 	}
 }
