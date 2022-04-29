@@ -7,14 +7,12 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import * as _palette from '../app/telco-maps/theming/palette';
 import { TelcoMapsComponent } from 'src/app/telco-maps/telco-maps.component';
-// import { MaterialModule } from 'libs/ui/src/modules/material.module';
 
 export default {
 	title: 'Iauro/Telco-Map',
 	decorators: [
 		moduleMetadata({
 			imports: [
-				// MaterialModule,
 				BrowserAnimationsModule,
 				CommonModule,
 				FormsModule,

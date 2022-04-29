@@ -31,3 +31,11 @@ Bar.args = {
 		layout: { width: '100%', height: '100%', title: 'A Fancy Plot' },
 	},
 };
+
+export const Line = Template.bind({});
+Line.args = {
+	barChartData: {
+		data: [{ x: [1, 2, 3], y: [2, 6, 3], type: 'scatter', mode: 'lines+points', marker: { color: 'red' } }],
+		layout: { width: '100%', height: '100%', title: 'A Fancy Plot' },
+	},
+};

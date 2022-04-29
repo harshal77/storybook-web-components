@@ -299,6 +299,56 @@
             "indexSignatures": [],
             "kind": 165,
             "methods": []
+        },
+        {
+            "name": "InputDataInterFace",
+            "id": "interface-InputDataInterFace-cd5debf7bcb4985a21a87a69212fc04e60906cef1904830d700ad9660d208f7eec4acd9dba2c35193c636d879931079fb37eb55c666b8c08c89b4b6251ee7ee4",
+            "file": "src/app/telco-table/telco-table.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { LiveAnnouncer } from '@angular/cdk/a11y';\nimport { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';\nimport { MatPaginator } from '@angular/material/paginator';\nimport { MatTableDataSource } from '@angular/material/table';\nimport { MatSort, Sort } from '@angular/material/sort';\n\nexport interface InputDataInterFace {\n\tSiteName: string;\n\tCountofAlarm: string;\n\tTimestamp: { date: string; time: string };\n\tRCA: { iconImg: string; status: string };\n}\n\nconst ELEMENT_DATA: InputDataInterFace[] = [\n\t{\n\t\tSiteName: 'Site Name 1',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2022',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 2',\n\t\tCountofAlarm: '09',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'Cell Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 4',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 5',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 6',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 7',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n];\n\n@Component({\n\tselector: 'app-telco-table',\n\ttemplateUrl: './telco-table.component.html',\n\tstyleUrls: ['./telco-table.component.scss'],\n})\nexport class TelcoTableComponent implements OnInit {\n\t@Input() PaginationShow: boolean = false;\n\tdisplayedColumns = ['SiteName', 'CountofAlarm', 'Timestamp', 'RCA'];\n\tdataSource = new MatTableDataSource<InputDataInterFace>(ELEMENT_DATA);\n\n\t@ViewChild(MatSort) sort: MatSort;\n\t@ViewChild(MatPaginator) paginator: MatPaginator;\n\n\tconstructor(private _liveAnnouncer: LiveAnnouncer) {}\n\n\tngOnInit() {\n\t\tthis.dataSource.paginator = this.paginator;\n\t\tthis.dataSource.sort = this.sort;\n\t\tthis.dataSource.sortingDataAccessor = (item, property) => {\n\t\t\tswitch (property) {\n\t\t\t\tcase 'RCA': {\n\t\t\t\t\treturn item.RCA.status;\n\t\t\t\t}\n\n\t\t\t\tcase 'Timestamp': {\n\t\t\t\t\tlet newDate = new Date(item.Timestamp.date);\n\t\t\t\t\treturn newDate;\n\t\t\t\t}\n\t\t\t\tdefault: {\n\t\t\t\t\treturn item[property];\n\t\t\t\t}\n\t\t\t}\n\t\t};\n\t}\n\n\t// for sorting\n\tannounceSortChange(sortState: Sort) {\n\t\tif (sortState.direction) {\n\t\t\tthis._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);\n\t\t} else {\n\t\t\tthis._liveAnnouncer.announce('Sorting cleared');\n\t\t}\n\t}\n}\n",
+            "properties": [
+                {
+                    "name": "CountofAlarm",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "RCA",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "SiteName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "Timestamp",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
         }
     ],
     "injectables": [],
@@ -384,11 +434,11 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<app-telco-cards></app-telco-cards>\r\n"
+            "templateData": ""
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-2af8b7b0f4016de00a83e0d6ff4ac2d367e4074fe234da6fd609733d70c69f410d0c55b0c23b14b17a5a1cb1009acc2e1b2da32539240e5179d86b2f2b0a33b1",
+            "id": "component-ButtonComponent-f0eed6ed4dc9ff9a839f60cd262fa8579c6e7480a48d1ebb8502f004fb80eef5ce89bb16ff3a7c795ac7c1fe98b62de7d0ac23d97b995256aa33fc146e3b15d3",
             "file": "src/app/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -407,6 +457,7 @@
             "inputsClass": [
                 {
                     "name": "backgroundColor",
+                    "defaultValue": "'#660099'",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 11,
@@ -415,10 +466,19 @@
                 },
                 {
                     "name": "buttonFontSize",
-                    "defaultValue": "'10px'",
+                    "defaultValue": "'1.5rem'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 18,
+                    "line": 16,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "buttonHeight",
+                    "defaultValue": "'3rem'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
                     "type": "string",
                     "decorators": []
                 },
@@ -427,16 +487,16 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 12,
                     "type": "boolean",
                     "decorators": []
                 },
                 {
                     "name": "iconLink",
-                    "defaultValue": "'../../assets/perm_identity_white_48dp.svg'",
+                    "defaultValue": "'home'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 14,
                     "type": "string",
                     "decorators": []
                 },
@@ -445,16 +505,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 16,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
-                    "name": "primaryButton",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 12,
+                    "line": 15,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -463,13 +514,22 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 13,
                     "type": "boolean",
                     "decorators": []
                 },
                 {
+                    "name": "textColor",
+                    "defaultValue": "'white'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
                     "name": "title",
-                    "defaultValue": "''",
+                    "defaultValue": "'Primary Button'",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 10,
@@ -483,7 +543,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
+                    "line": 20,
                     "type": "EventEmitter"
                 }
             ],
@@ -495,7 +555,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 22,
+                    "line": 21,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -507,16 +567,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'telco-button',\r\n  templateUrl: './button.component.html',\r\n  styleUrls: ['./button.component.scss'],\r\n})\r\n\r\nexport class ButtonComponent {\r\n  @Input() title: string = '';\r\n  @Input() backgroundColor?: string;\r\n  @Input() primaryButton?: boolean = false;\r\n  @Input() displayIcon: boolean = false;\r\n  @Input() roundedButton: boolean = true;\r\n  @Input() iconLink: string = '../../assets/perm_identity_white_48dp.svg';\r\n  @Input() iconRight: boolean = false;\r\n  @Output() buttonClick = new EventEmitter<any>();\r\n  @Input() buttonFontSize: string = '10px';\r\n\r\n\r\n\r\n  buttonClicked() {\r\n    this.buttonClick.emit();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\nimport { MatIcon } from '@angular/material/icon';\r\n\r\n@Component({\r\n\tselector: 'telco-button',\r\n\ttemplateUrl: './button.component.html',\r\n\tstyleUrls: ['./button.component.scss'],\r\n})\r\nexport class ButtonComponent {\r\n\t@Input() title: string = 'Primary Button';\r\n\t@Input() backgroundColor: string = '#660099';\r\n\t@Input() displayIcon: boolean = false;\r\n\t@Input() roundedButton: boolean = true;\r\n\t@Input() iconLink: string = 'home';\r\n\t@Input() iconRight: boolean = false;\r\n\t@Input() buttonFontSize: string = '1.5rem';\r\n\t@Input() buttonHeight: string = '3rem';\r\n\t@Input() textColor: string = 'white';\r\n\r\n\t@Output() buttonClick = new EventEmitter<any>();\r\n\tbuttonClicked() {\r\n\t\tthis.buttonClick.emit();\r\n\t}\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "button {\r\n\tpadding: 0 0.5rem;\r\n}\r\n.primary {\r\n\tbackground-color: #660099;\r\n\tcolor: white;\r\n}\r\n.basicStyle {\r\n\tcolor: black;\r\n\tbackground-color: aqua;\r\n}\r\n\r\n.basic-layout {\r\n\tdisplay: flex;\r\n\tjustify-content: space-between;\r\n\talign-items: center;\r\n}\r\n\r\n.rounded {\r\n\tborder-radius: 4rem;\r\n}\r\n\r\n.iconRightClass {\r\n\tflex-direction: row-reverse;\r\n}\r\n",
+                    "data": "button {\r\n\twidth: 100%;\r\n\ttext-align: center;\r\n\tfont-size: 1rem;\r\n}\r\n\r\n.rounded {\r\n\tborder-radius: 2rem;\r\n}\r\n",
                     "styleUrl": "./button.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<button\r\n\t[ngStyle]=\"{\r\n\t\t'background-color': backgroundColor\r\n\t}\"\r\n\t(click)=\"buttonClicked()\"\r\n\tclass=\"material-icons-outlined basic-layout pointer\"\r\n\t[ngClass]=\"{\r\n\t\tprimary: primaryButton,\r\n\t\trounded: roundedButton,\r\n\t\tbasicStyle: !primaryButton,\r\n\t\ticonRightClass: iconRight\r\n\t}\"\r\n>\r\n\r\n\r\n\t<img [src]=\"iconLink\" alt=\"\" [ngClass]=\"{ hidden: !displayIcon }\" />\r\n\r\n\r\n\t<h2 [ngStyle]=\"{ 'font-size': buttonFontSize }\">{{ title }}</h2>\r\n\r\n\r\n</button>\r\n\r\n\r\n"
+            "templateData": "\r\n<button [ngStyle]=\"{\r\n\t\t'background-color': backgroundColor,\r\n    'color':textColor,\r\n    'height':buttonHeight\r\n\t}\"\r\n  [ngClass]=\"{\r\n\t\trounded: roundedButton\r\n\t}\"\r\n\r\nfxLayout=\"{{!iconRight ? 'row' : 'row-reverse'}}\"  fxLayoutAlign=\"center center\" fxLayoutGap=\"1rem\" (click)=\"buttonClicked()\">\r\n  <mat-icon *ngIf=\"displayIcon\" >{{iconLink}}</mat-icon>\r\n  <p [ngStyle]=\"{ 'font-size': buttonFontSize }\">{{title}}</p>\r\n</button>\r\n"
         },
         {
             "name": "TelcoBarChartComponent",
@@ -698,7 +758,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "html {\r\n\tfont-size: 14px;\r\n\tfont-family: 'Noto Sans', sans-serif;\r\n\tfont-style: normal;\r\n}\r\np {\r\n\tmargin: 0;\r\n}\r\n\r\n.card {\r\n\tpadding: 1rem 1.5rem;\r\n\tbackground: #ffffff;\r\n\tborder: 1px solid #e2e7ef;\r\n\tborder-radius: 0.2rem;\r\n\twidth: 291px;\r\n\theight: 86px;\r\n}\r\n\r\n.item-1-upper {\r\n\theight: fit-content;\r\n\tp {\r\n\t\tfont-size: 1rem;\r\n\t\tfont-weight: 400;\r\n\t\tcolor: #636a75;\r\n\t}\r\n}\r\n\r\n.lower-left {\r\n\tp {\r\n\t\tfont-weight: 700;\r\n\t\tfont-size: 1.5rem;\r\n\t\tcolor: #660099;\r\n\t}\r\n}\r\n\r\n.lower-right {\r\n\tbackground: #e0f2ee;\r\n\tborder-radius: 0.1rem;\r\n\theight: 1.8rem;\r\n\tp {\r\n\t\tfont-weight: 700;\r\n\t\tfont-size: 1rem;\r\n\t\ttext-align: center;\r\n\t\tcolor: #36947d;\r\n\t}\r\n}\r\n\r\n.red {\r\n\tbackground: rgba(225, 38, 38, 0.1);\r\n\tp {\r\n\t\tcolor: #e12626;\r\n\t}\r\n}\r\n\r\n.card-item-3 {\r\n\tmin-height: 54px;\r\n\tp {\r\n\t\tpadding: 0.2rem;\r\n\t\tfont-weight: 400;\r\n\t\tfont-size: 1rem;\r\n\t\ttext-align: center;\r\n\t\tcolor: #2f54eb;\r\n\t}\r\n}\r\n",
+                    "data": "html {\r\n\tfont-size: 14px;\r\n\tfont-family: 'Noto Sans', sans-serif;\r\n\tfont-style: normal;\r\n}\r\np {\r\n\tmargin: 0;\r\n}\r\n\r\n.card {\r\n\tpadding: 1rem 1.5rem;\r\n\tbackground: #ffffff;\r\n\tborder: 1px solid #e2e7ef;\r\n\tborder-radius: 0.2rem;\r\n}\r\n\r\n.item-1-upper {\r\n\theight: fit-content;\r\n\tp {\r\n\t\tfont-size: 1rem;\r\n\t\tfont-weight: 400;\r\n\t\tcolor: #636a75;\r\n\t}\r\n}\r\n\r\n.lower-left {\r\n\tp {\r\n\t\tfont-weight: 700;\r\n\t\tfont-size: 1.5rem;\r\n\t\tcolor: #660099;\r\n\t}\r\n}\r\n\r\n.lower-right {\r\n\tbackground: #e0f2ee;\r\n\tborder-radius: 0.1rem;\r\n\theight: 1.8rem;\r\n\tp {\r\n\t\tfont-weight: 700;\r\n\t\tfont-size: 1rem;\r\n\t\ttext-align: center;\r\n\t\tcolor: #36947d;\r\n\t}\r\n}\r\n\r\n.red {\r\n\tbackground: rgba(225, 38, 38, 0.1);\r\n\tp {\r\n\t\tcolor: #e12626;\r\n\t}\r\n}\r\n\r\n.card-item-3 {\r\n\tmin-height: 54px;\r\n\tp {\r\n\t\tpadding: 0.2rem;\r\n\t\tfont-weight: 400;\r\n\t\tfont-size: 1rem;\r\n\t\ttext-align: center;\r\n\t\tcolor: #2f54eb;\r\n\t}\r\n}\r\n",
                     "styleUrl": "./telco-cards.component.scss"
                 }
             ],
@@ -2489,7 +2549,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".search {\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tborder: 1px solid;\r\n\twidth: 100%;\r\n\theight: 2rem;\r\n\timg {\r\n\t\twidth: 10%;\r\n\t\theight: 100%;\r\n\t}\r\n\tinput {\r\n\t\twidth: 90%;\r\n\t\tborder: none;\r\n\t}\r\n\tinput:focus {\r\n\t\toutline: none;\r\n\t}\r\n}\r\n",
+                    "data": ".search {\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tborder: 1px solid;\r\n\twidth: 100%;\r\n\theight: 2rem;\r\n\timg {\r\n\t\twidth: 10%;\r\n\t\theight: 100%;\r\n\t}\r\n\tinput {\r\n\t\twidth: 90%;\r\n\t\tborder: none;\r\n\t\tfont-size: 1rem;\r\n\t}\r\n\tinput:focus {\r\n\t\toutline: none;\r\n\t}\r\n}\r\n",
                     "styleUrl": "./telco-search.component.scss"
                 }
             ],
@@ -2506,18 +2566,231 @@
                 "OnInit"
             ],
             "templateData": "<div class=\"search\" [ngStyle]=\"{'background': backgroundColor,'border-color':borderColor,'border-radius':borderRadius}\">\n  <img [src]=\"iconUrl\" alt=\"icon\" (click)=\"searchClick()\">\n  <input type=\"text\" [placeholder]=\"placeholder\" [(ngModel)]=\"searchText\" [ngStyle]=\"{'background': backgroundColor,'font-family':fontFamily}\">\n</div>\n"
+        },
+        {
+            "name": "TelcoTableComponent",
+            "id": "component-TelcoTableComponent-cd5debf7bcb4985a21a87a69212fc04e60906cef1904830d700ad9660d208f7eec4acd9dba2c35193c636d879931079fb37eb55c666b8c08c89b4b6251ee7ee4",
+            "file": "src/app/telco-table/telco-table.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-telco-table",
+            "styleUrls": [
+                "./telco-table.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./telco-table.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "PaginationShow",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 119,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "dataSource",
+                    "defaultValue": "new MatTableDataSource<InputDataInterFace>(ELEMENT_DATA)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 121
+                },
+                {
+                    "name": "displayedColumns",
+                    "defaultValue": "['SiteName', 'CountofAlarm', 'Timestamp', 'RCA']",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 120
+                },
+                {
+                    "name": "paginator",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MatPaginator",
+                    "optional": false,
+                    "description": "",
+                    "line": 124,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "MatPaginator"
+                        }
+                    ]
+                },
+                {
+                    "name": "sort",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "MatSort",
+                    "optional": false,
+                    "description": "",
+                    "line": 123,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "MatSort"
+                        }
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "announceSortChange",
+                    "args": [
+                        {
+                            "name": "sortState",
+                            "type": "Sort",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 149,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "sortState",
+                            "type": "Sort",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 128,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { LiveAnnouncer } from '@angular/cdk/a11y';\nimport { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';\nimport { MatPaginator } from '@angular/material/paginator';\nimport { MatTableDataSource } from '@angular/material/table';\nimport { MatSort, Sort } from '@angular/material/sort';\n\nexport interface InputDataInterFace {\n\tSiteName: string;\n\tCountofAlarm: string;\n\tTimestamp: { date: string; time: string };\n\tRCA: { iconImg: string; status: string };\n}\n\nconst ELEMENT_DATA: InputDataInterFace[] = [\n\t{\n\t\tSiteName: 'Site Name 1',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2022',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 2',\n\t\tCountofAlarm: '09',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'Cell Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 4',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 5',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 6',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 7',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n];\n\n@Component({\n\tselector: 'app-telco-table',\n\ttemplateUrl: './telco-table.component.html',\n\tstyleUrls: ['./telco-table.component.scss'],\n})\nexport class TelcoTableComponent implements OnInit {\n\t@Input() PaginationShow: boolean = false;\n\tdisplayedColumns = ['SiteName', 'CountofAlarm', 'Timestamp', 'RCA'];\n\tdataSource = new MatTableDataSource<InputDataInterFace>(ELEMENT_DATA);\n\n\t@ViewChild(MatSort) sort: MatSort;\n\t@ViewChild(MatPaginator) paginator: MatPaginator;\n\n\tconstructor(private _liveAnnouncer: LiveAnnouncer) {}\n\n\tngOnInit() {\n\t\tthis.dataSource.paginator = this.paginator;\n\t\tthis.dataSource.sort = this.sort;\n\t\tthis.dataSource.sortingDataAccessor = (item, property) => {\n\t\t\tswitch (property) {\n\t\t\t\tcase 'RCA': {\n\t\t\t\t\treturn item.RCA.status;\n\t\t\t\t}\n\n\t\t\t\tcase 'Timestamp': {\n\t\t\t\t\tlet newDate = new Date(item.Timestamp.date);\n\t\t\t\t\treturn newDate;\n\t\t\t\t}\n\t\t\t\tdefault: {\n\t\t\t\t\treturn item[property];\n\t\t\t\t}\n\t\t\t}\n\t\t};\n\t}\n\n\t// for sorting\n\tannounceSortChange(sortState: Sort) {\n\t\tif (sortState.direction) {\n\t\t\tthis._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);\n\t\t} else {\n\t\t\tthis._liveAnnouncer.announce('Sorting cleared');\n\t\t}\n\t}\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "html {\r\n\tfont-size: 14px;\r\n\tfont-family: 'Noto Sans', sans-serif;\r\n\tfont-style: normal;\r\n}\r\n\r\nth.mat-sort-header-sorted {\r\n\tcolor: black;\r\n}\r\n\r\n.mat-table {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n}\r\n.hidden {\r\n\tdisplay: none;\r\n}\r\n\r\n.mat-body p,\r\n.mat-body-1 p,\r\n::ng-deep.mat-typography p {\r\n\tmargin: revert !important;\r\n}\r\n\r\n.mat-header-cell {\r\n\tcolor: #333333;\r\n\tfont-weight: 600;\r\n\tfont-size: 1rem;\r\n}\r\n\r\n.mat-cell {\r\n\tcolor: #594e4e;\r\n\tfont-weight: 400;\r\n\tfont-size: 1rem;\r\n}\r\n.mat-column-select {\r\n\toverflow: initial;\r\n}\r\n\r\n.RCA-cell {\r\n\tp {\r\n\t\tpadding-left: 1rem;\r\n\t}\r\n}\r\n\r\n.mat-paginator-sticky {\r\n\tbottom: 0;\r\n\tposition: sticky;\r\n\tz-index: 10;\r\n}\r\n",
+                    "styleUrl": "./telco-table.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "_liveAnnouncer",
+                        "type": "LiveAnnouncer",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 124,
+                "jsdoctags": [
+                    {
+                        "name": "_liveAnnouncer",
+                        "type": "LiveAnnouncer",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"mat-elevation-z8\" *ngIf=\"dataSource\">\r\n\t<table mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"announceSortChange($event)\">\r\n\t\t<!-- to add all the rows -->\r\n\t\t<ng-container matColumnDef=\"{{ column }}\" *ngFor=\"let column of displayedColumns\">\r\n\t\t\t<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>\r\n\t\t\t<td mat-cell *matCellDef=\"let element\">\r\n\t\t\t\t<div [ngSwitch]=\"column\">\r\n\t\t\t\t\t<div *ngSwitchCase=\"'Timestamp'\">\r\n\t\t\t\t\t\t<p>{{ element[column].date }}</p>\r\n\t\t\t\t\t\t<p>{{ element[column].time }}</p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div *ngSwitchCase=\"'RCA'\" class=\"flex-horizontal RCA-cell\">\r\n\t\t\t\t\t\t<img [src]=\"element[column].iconImg\" alt=\"\" />\r\n\t\t\t\t\t\t<p>{{ element[column].status }}</p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div *ngSwitchDefault>\r\n\t\t\t\t\t\t<p>{{ element[column] }}</p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</td>\r\n\t\t</ng-container>\r\n\r\n\t\t<tr mat-header-row *matHeaderRowDef=\"displayedColumns; sticky: true\"></tr>\r\n\t\t<tr mat-row *matRowDef=\"let row; columns: displayedColumns\"></tr>\r\n\t</table>\r\n\r\n\t<mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons aria-label=\"Select page of periodic elements\"> </mat-paginator>\r\n</div>\r\n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-235f16b062b9101c48cf34d008da38501773e03e311bfdab04a3353a32bf676b0d108a229746679931bc88752a226f425f82e3abdf05f595209f7ec0f94b6415",
+            "id": "module-AppModule-127637e696b3254bc64089b61bcaf43fa7624407ae255d619794ae2fe3d17a14a19f3eb59018b944e5ed78e80a0c55347353cd0a683469e40b0ca904e759d03b",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
-            "methods": [],
-            "sourceCode": "import { AppComponent } from './app.component';\r\nimport { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { NgSelectModule } from '@ng-select/ng-select';\r\nimport { ButtonComponent } from './button/button.component';\r\nimport { TelcoListComponent } from './telco-list/telco-list.component';\r\nimport { TelcoSearchComponent } from './telco-search/telco-search.component';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { FlexLayoutModule } from '@angular/flex-layout';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { TelcoCardsComponent } from './telco-cards/telco-cards.component';\r\nimport { TelcoMapsComponent } from './telco-maps/telco-maps.component';\r\nimport {} from 'google-maps';\r\nimport { TelcoBarChartComponent } from './telco-charts/telco-bar-chart/telco-bar-chart.component';\r\nimport { TelcoPieChartComponent } from './telco-charts/telco-pie-chart/telco-pie-chart.component';\r\n\r\nimport { PlotlyViaCDNModule, PlotlyViaWindowModule } from 'angular-plotly.js';\r\n\r\n@NgModule({\r\n\tdeclarations: [\r\n\t\tAppComponent,\r\n\t\tButtonComponent,\r\n\t\tTelcoListComponent,\r\n\t\tTelcoSearchComponent,\r\n\t\tTelcoCardsComponent,\r\n\t\tTelcoMapsComponent,\r\n\t\tTelcoBarChartComponent,\r\n\t\tTelcoPieChartComponent,\r\n\t],\r\n\timports: [\r\n\t\tBrowserModule,\r\n\t\tNgSelectModule,\r\n\t\tFormsModule,\r\n\t\tBrowserAnimationsModule,\r\n\t\tMatIconModule,\r\n\t\tPlotlyViaCDNModule,\r\n\t\tPlotlyViaWindowModule,\r\n\t\tFlexLayoutModule,\r\n\t],\r\n\tproviders: [],\r\n\tbootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "methods": [
+                {
+                    "name": "createWebComponents",
+                    "args": [
+                        {
+                            "name": "component",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "injector",
+                            "type": "Injector",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 83,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "component",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "injector",
+                            "type": "Injector",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "sourceCode": "import { AppComponent } from './app.component';\r\nimport { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';\r\nimport { createCustomElement } from '@angular/elements';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { NgSelectModule } from '@ng-select/ng-select';\r\nimport { ButtonComponent } from './button/button.component';\r\nimport { TelcoListComponent } from './telco-list/telco-list.component';\r\nimport { TelcoSearchComponent } from './telco-search/telco-search.component';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { FlexLayoutModule, FlexModule } from '@angular/flex-layout';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { TelcoCardsComponent } from './telco-cards/telco-cards.component';\r\nimport { TelcoMapsComponent } from './telco-maps/telco-maps.component';\r\nimport {} from 'google-maps';\r\nimport { TelcoBarChartComponent } from './telco-charts/telco-bar-chart/telco-bar-chart.component';\r\nimport { TelcoPieChartComponent } from './telco-charts/telco-pie-chart/telco-pie-chart.component';\r\nimport { PlotlyViaCDNModule } from 'angular-plotly.js';\r\nimport { TelcoTableComponent } from './telco-table/telco-table.component';\r\n\r\n// for table component\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\nimport { MatChipsModule } from '@angular/material/chips';\r\nimport { MatSortModule } from '@angular/material/sort';\r\n\r\n// array of web components for exporting\r\nconst components = [\r\n\t{\r\n\t\tname: 'telco-cards',\r\n\t\tcomponent: TelcoCardsComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-button',\r\n\t\tcomponent: ButtonComponent,\r\n\t},\r\n\r\n\t{\r\n\t\tname: 'telco-list',\r\n\t\tcomponent: TelcoListComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-maps',\r\n\t\tcomponent: TelcoMapsComponent,\r\n\t},\r\n];\r\n\r\n@NgModule({\r\n\tdeclarations: [\r\n\t\tAppComponent,\r\n\t\tButtonComponent,\r\n\t\tTelcoListComponent,\r\n\t\tTelcoSearchComponent,\r\n\t\tTelcoCardsComponent,\r\n\t\tTelcoMapsComponent,\r\n\t\tTelcoBarChartComponent,\r\n\t\tTelcoPieChartComponent,\r\n\t\tTelcoTableComponent,\r\n\t],\r\n\timports: [\r\n\t\tBrowserModule,\r\n\t\tNgSelectModule,\r\n\t\tFormsModule,\r\n\t\tBrowserAnimationsModule,\r\n\t\tMatIconModule,\r\n\t\tPlotlyViaCDNModule,\r\n\t\tFlexLayoutModule,\r\n\t\tMatTableModule,\r\n\t\tMatPaginatorModule,\r\n\t\tMatChipsModule,\r\n\t\tMatSortModule,\r\n\t\tFlexModule,\r\n\t],\r\n\tproviders: [],\r\n\tbootstrap: [AppComponent],\r\n\tentryComponents: components.map((e) => e.component),\r\n})\r\nexport class AppModule {\r\n\tconstructor(private injector: Injector) {\r\n\t\tthis.createWebComponents(components, injector);\r\n\t}\r\n\r\n\tcreateWebComponents(component: any, injector: Injector) {\r\n\t\tcomponent.forEach((c: any) => {\r\n\t\t\tconst ce = createCustomElement(c.component, { injector });\r\n\r\n\t\t\tcustomElements.define(c.name, ce);\r\n\r\n\t\t\tc['web-component'] = ce;\r\n\t\t});\r\n\t}\r\n}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -2549,6 +2822,9 @@
                         },
                         {
                             "name": "TelcoSearchComponent"
+                        },
+                        {
+                            "name": "TelcoTableComponent"
                         }
                     ]
                 },
@@ -2648,6 +2924,26 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "BasicTable",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "components",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/app.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n\t{\r\n\t\tname: 'telco-cards',\r\n\t\tcomponent: TelcoCardsComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-button',\r\n\t\tcomponent: ButtonComponent,\r\n\t},\r\n\r\n\t{\r\n\t\tname: 'telco-list',\r\n\t\tcomponent: TelcoListComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-maps',\r\n\t\tcomponent: TelcoMapsComponent,\r\n\t},\r\n]"
+            },
+            {
                 "name": "Config",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2678,14 +2974,14 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "environment",
+                "name": "ELEMENT_DATA",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
+                "file": "src/app/telco-table/telco-table.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  production: false\r\n}"
+                "type": "InputDataInterFace[]",
+                "defaultValue": "[\n\t{\n\t\tSiteName: 'Site Name 1',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2022',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 2',\n\t\tCountofAlarm: '09',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'Cell Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 4',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 5',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 6',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 7',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n]"
             },
             {
                 "name": "environment",
@@ -2696,6 +2992,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  production: true\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: false\r\n}"
             },
             {
                 "name": "MarkerClusterer",
@@ -2759,7 +3065,7 @@
                 "name": "primaryButton",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/button.stories.ts",
+                "file": "src/stories/telco-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -2778,7 +3084,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/button.stories.ts",
+                "file": "src/stories/telco-bar-chart.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TelcoBarChartComponent>",
+                "defaultValue": "(args: TelcoBarChartComponent) => ({\r\n\tprops: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
@@ -2798,21 +3114,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/telco-bar-chart.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<TelcoBarChartComponent>",
-                "defaultValue": "(args: TelcoBarChartComponent) => ({\r\n\tprops: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/telco-list.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TelcoListComponent>",
                 "defaultValue": "(args: TelcoListComponent) => ({\r\n\tComponent: TelcoListComponent,\r\n\tprops: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-maps.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TelcoMapsComponent>",
+                "defaultValue": "(args: TelcoMapsComponent) => ({\r\n\tcomponent: TelcoMapsComponent,\r\n\tprops: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -2828,11 +3144,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/telco-maps.stories.ts",
+                "file": "src/stories/telco-table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<TelcoMapsComponent>",
-                "defaultValue": "(args: TelcoMapsComponent) => ({\r\n\tcomponent: TelcoMapsComponent,\r\n\tprops: args,\r\n})"
+                "type": "Story<TelcoTableComponent>",
+                "defaultValue": "(args: TelcoTableComponent) => ({\r\n\tComponent: TelcoTableComponent,\r\n\tprops: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -3100,6 +3416,40 @@
                     "defaultValue": "(args: TelcoSearchComponent) => ({\r\n\tComponent: TelcoSearchComponent,\r\n\tprops: args,\r\n})"
                 }
             ],
+            "src/stories/telco-table.stories.ts": [
+                {
+                    "name": "BasicTable",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/telco-table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/telco-table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TelcoTableComponent>",
+                    "defaultValue": "(args: TelcoTableComponent) => ({\r\n\tComponent: TelcoTableComponent,\r\n\tprops: args,\r\n})"
+                }
+            ],
+            "src/app/app.module.ts": [
+                {
+                    "name": "components",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/app.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n\t{\r\n\t\tname: 'telco-cards',\r\n\t\tcomponent: TelcoCardsComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-button',\r\n\t\tcomponent: ButtonComponent,\r\n\t},\r\n\r\n\t{\r\n\t\tname: 'telco-list',\r\n\t\tcomponent: TelcoListComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-maps',\r\n\t\tcomponent: TelcoMapsComponent,\r\n\t},\r\n]"
+                }
+            ],
             "src/test.ts": [
                 {
                     "name": "context",
@@ -3121,16 +3471,16 @@
                     "type": "literal type"
                 }
             ],
-            "src/environments/environment.ts": [
+            "src/app/telco-table/telco-table.component.ts": [
                 {
-                    "name": "environment",
+                    "name": "ELEMENT_DATA",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/environments/environment.ts",
+                    "file": "src/app/telco-table/telco-table.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\r\n  production: false\r\n}"
+                    "type": "InputDataInterFace[]",
+                    "defaultValue": "[\n\t{\n\t\tSiteName: 'Site Name 1',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2022',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 2',\n\t\tCountofAlarm: '09',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'Cell Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 4',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 5',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 6',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 7',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n]"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -3143,6 +3493,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\r\n  production: true\r\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: false\r\n}"
                 }
             ],
             "src/app/telco-maps/telco-maps.component.ts": [
@@ -3187,12 +3549,12 @@
                     "defaultValue": "(args: TelcoPieChartComponent) => ({\r\n\tprops: args,\r\n})"
                 }
             ],
-            "src/stories/button.stories.ts": [
+            "src/stories/telco-button.stories.ts": [
                 {
                     "name": "primaryButton",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/button.stories.ts",
+                    "file": "src/stories/telco-button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -3202,7 +3564,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/button.stories.ts",
+                    "file": "src/stories/telco-button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonComponent>",
@@ -3304,12 +3666,22 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/app.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "components",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/button/button.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/11",
+                "coverageCount": "0/12",
                 "status": "low"
             },
             {
@@ -3432,6 +3804,34 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/telco-table/telco-table.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TelcoTableComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/telco-table/telco-table.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "InputDataInterFace",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/telco-table/telco-table.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ELEMENT_DATA",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/environments/environment.prod.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -3452,26 +3852,6 @@
                 "status": "low"
             },
             {
-                "filePath": "src/stories/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "primaryButton",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "src/stories/telco-bar-chart.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -3483,6 +3863,26 @@
             },
             {
                 "filePath": "src/stories/telco-bar-chart.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "primaryButton",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-button.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -3663,6 +4063,26 @@
             },
             {
                 "filePath": "src/stories/telco-search.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "BasicTable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-table.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
