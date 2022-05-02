@@ -1,35 +1,37 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="card">
-	<div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="card-items">
-		<div class="card-item-1" fxFlex="20" fxLayoutAlign="center center">
-			<img [src]="cardIcon" alt="" />
-		</div>
+  <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="card-items">
+    <div class="card-item-1" fxFlex="20" fxLayoutAlign="center center">
+      <img [src]="cardIcon" alt="" />
+    </div>
 
-		<div class="card-item-2" fxFlex="48" fxLayout="column" fxLayoutGap="4px">
-			<div class="item-1-upper" fxFlex="53">
-				<p>{{ cardTitle }}</p>
-			</div>
+    <div class="card-item-2" fxFlex="48" fxLayout="column" fxLayoutGap="4px">
+      <div class="item-1-upper" fxFlex="53">
+        <p>{{ cardTitle }}</p>
+      </div>
 
-			<div class="item-2-lower" fxLayout="row" fxLayoutGap="6px" fxFlex="47" fxLayoutAlign="start center">
-				<div fxFlex="46" class="lower-left" fxLayout="start center">
-					<p>{{ cardSubtitle }}</p>
-				</div>
+      <div class="item-2-lower" fxLayout="row" fxLayoutGap="6px" fxFlex="47" fxLayoutAlign="start center">
+        <div fxFlex="46" class="lower-left" fxLayout="start center">
+          <p>{{ cardSubtitle }}</p>
+        </div>
 
-				<!-- if the given percentage is greater than 0 -->
-				<div fxFlex="52" class="lower-right" fxLayout="row" fxLayoutAlign="space-evenly center" *ngIf="cardSubtitlePercentage >= 0">
-					<p>{{ cardSubtitlePercentage }}%</p>
-					<img [src]="positivePercentageIcon" alt="" />
-				</div>
+        <!-- if the given percentage is greater than 0 -->
+        <div fxFlex="52" class="lower-right" fxLayout="row" fxLayoutAlign="space-evenly center"
+          *ngIf="cardSubtitlePercentage >= 0">
+          <p>{{ cardSubtitlePercentage }}%</p>
+          <img [src]="positivePercentageIcon" alt="" />
+        </div>
 
-				<!-- if it is less than 0 -->
-				<div fxFlex="52" class="lower-right red" fxLayout="row" fxLayoutAlign="space-evenly center" *ngIf="cardSubtitlePercentage < 0">
-					<p>{{ cardSubtitlePercentage }}%</p>
-					<img [src]="negativePercentageIcon" alt="" />
-				</div>
-			</div>
-		</div>
+        <!-- if it is less than 0 -->
+        <div fxFlex="52" class="lower-right red" fxLayout="row" fxLayoutAlign="space-evenly center"
+          *ngIf="cardSubtitlePercentage < 0">
+          <p>{{ cardSubtitlePercentage }}%</p>
+          <img [src]="negativePercentageIcon" alt="" />
+        </div>
+      </div>
+    </div>
 
-		<div class="card-item-3" fxFlex="32" fxLayout="row" fxLayoutAlign="end end">
-			<p (click)="viewAllClick()">View All</p>
-		</div>
-	</div>
+    <div class="card-item-3" fxFlex="32" fxLayout="row" fxLayoutAlign="end end">
+      <p class="pointer" (click)="viewAllClick()">View All</p>
+    </div>
+  </div>
 </div>

@@ -299,56 +299,6 @@
             "indexSignatures": [],
             "kind": 165,
             "methods": []
-        },
-        {
-            "name": "InputDataInterFace",
-            "id": "interface-InputDataInterFace-cd5debf7bcb4985a21a87a69212fc04e60906cef1904830d700ad9660d208f7eec4acd9dba2c35193c636d879931079fb37eb55c666b8c08c89b4b6251ee7ee4",
-            "file": "src/app/telco-table/telco-table.component.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import { LiveAnnouncer } from '@angular/cdk/a11y';\nimport { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';\nimport { MatPaginator } from '@angular/material/paginator';\nimport { MatTableDataSource } from '@angular/material/table';\nimport { MatSort, Sort } from '@angular/material/sort';\n\nexport interface InputDataInterFace {\n\tSiteName: string;\n\tCountofAlarm: string;\n\tTimestamp: { date: string; time: string };\n\tRCA: { iconImg: string; status: string };\n}\n\nconst ELEMENT_DATA: InputDataInterFace[] = [\n\t{\n\t\tSiteName: 'Site Name 1',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2022',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 2',\n\t\tCountofAlarm: '09',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'Cell Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 4',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 5',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 6',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 7',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n];\n\n@Component({\n\tselector: 'app-telco-table',\n\ttemplateUrl: './telco-table.component.html',\n\tstyleUrls: ['./telco-table.component.scss'],\n})\nexport class TelcoTableComponent implements OnInit {\n\t@Input() PaginationShow: boolean = false;\n\tdisplayedColumns = ['SiteName', 'CountofAlarm', 'Timestamp', 'RCA'];\n\tdataSource = new MatTableDataSource<InputDataInterFace>(ELEMENT_DATA);\n\n\t@ViewChild(MatSort) sort: MatSort;\n\t@ViewChild(MatPaginator) paginator: MatPaginator;\n\n\tconstructor(private _liveAnnouncer: LiveAnnouncer) {}\n\n\tngOnInit() {\n\t\tthis.dataSource.paginator = this.paginator;\n\t\tthis.dataSource.sort = this.sort;\n\t\tthis.dataSource.sortingDataAccessor = (item, property) => {\n\t\t\tswitch (property) {\n\t\t\t\tcase 'RCA': {\n\t\t\t\t\treturn item.RCA.status;\n\t\t\t\t}\n\n\t\t\t\tcase 'Timestamp': {\n\t\t\t\t\tlet newDate = new Date(item.Timestamp.date);\n\t\t\t\t\treturn newDate;\n\t\t\t\t}\n\t\t\t\tdefault: {\n\t\t\t\t\treturn item[property];\n\t\t\t\t}\n\t\t\t}\n\t\t};\n\t}\n\n\t// for sorting\n\tannounceSortChange(sortState: Sort) {\n\t\tif (sortState.direction) {\n\t\t\tthis._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);\n\t\t} else {\n\t\t\tthis._liveAnnouncer.announce('Sorting cleared');\n\t\t}\n\t}\n}\n",
-            "properties": [
-                {
-                    "name": "CountofAlarm",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 9
-                },
-                {
-                    "name": "RCA",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "literal type",
-                    "optional": false,
-                    "description": "",
-                    "line": 11
-                },
-                {
-                    "name": "SiteName",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 8
-                },
-                {
-                    "name": "Timestamp",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "literal type",
-                    "optional": false,
-                    "description": "",
-                    "line": 10
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 165,
-            "methods": []
         }
     ],
     "injectables": [],
@@ -387,7 +337,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-70caa7971187ea42adc33d479aee19909f306fbac090cda703725407947453107c36bc35e922e56b12fbad3b5667e7603883c2854df494d5723ff04ebabfaf23",
+            "id": "component-AppComponent-08c4957441624495332a2cca7c0664264e174fd3e948213f41600eeaad3b24651f76409f65abbe8a9aa4f647d1139f58e58e7492d64e8b946e8392c1b482dfe1",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -425,7 +375,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: ['./app.component.scss']\r\n})\r\nexport class AppComponent {\r\n  title = 'telco-web-components';\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent {\n  title = 'telco-web-components';\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -438,7 +388,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-f0eed6ed4dc9ff9a839f60cd262fa8579c6e7480a48d1ebb8502f004fb80eef5ce89bb16ff3a7c795ac7c1fe98b62de7d0ac23d97b995256aa33fc146e3b15d3",
+            "id": "component-ButtonComponent-5fd426877634a91d9d063fe82e35bd6192995214c6b77ab54334ea1d70866e17347dab972b6cd7b8b4e5cb08119d457ca61594423393e47155f015cc8243cb2c",
             "file": "src/app/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -567,16 +517,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\nimport { MatIcon } from '@angular/material/icon';\r\n\r\n@Component({\r\n\tselector: 'telco-button',\r\n\ttemplateUrl: './button.component.html',\r\n\tstyleUrls: ['./button.component.scss'],\r\n})\r\nexport class ButtonComponent {\r\n\t@Input() title: string = 'Primary Button';\r\n\t@Input() backgroundColor: string = '#660099';\r\n\t@Input() displayIcon: boolean = false;\r\n\t@Input() roundedButton: boolean = true;\r\n\t@Input() iconLink: string = 'home';\r\n\t@Input() iconRight: boolean = false;\r\n\t@Input() buttonFontSize: string = '1.5rem';\r\n\t@Input() buttonHeight: string = '3rem';\r\n\t@Input() textColor: string = 'white';\r\n\r\n\t@Output() buttonClick = new EventEmitter<any>();\r\n\tbuttonClicked() {\r\n\t\tthis.buttonClick.emit();\r\n\t}\r\n}\r\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { MatIcon } from '@angular/material/icon';\n\n@Component({\n\tselector: 'telco-button',\n\ttemplateUrl: './button.component.html',\n\tstyleUrls: ['./button.component.scss'],\n})\nexport class ButtonComponent {\n\t@Input() title: string = 'Primary Button';\n\t@Input() backgroundColor: string = '#660099';\n\t@Input() displayIcon: boolean = false;\n\t@Input() roundedButton: boolean = true;\n\t@Input() iconLink: string = 'home';\n\t@Input() iconRight: boolean = false;\n\t@Input() buttonFontSize: string = '1.5rem';\n\t@Input() buttonHeight: string = '3rem';\n\t@Input() textColor: string = 'white';\n\n\t@Output() buttonClick = new EventEmitter<any>();\n\tbuttonClicked() {\n\t\tthis.buttonClick.emit();\n\t}\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "button {\r\n\twidth: 100%;\r\n\ttext-align: center;\r\n\tfont-size: 1rem;\r\n}\r\n\r\n.rounded {\r\n\tborder-radius: 2rem;\r\n}\r\n",
+                    "data": "button {\n\twidth: 100%;\n\ttext-align: center;\n\tfont-size: 1rem;\n}\n\n.rounded {\n\tborder-radius: 2rem;\n}\n",
                     "styleUrl": "./button.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "\r\n<button [ngStyle]=\"{\r\n\t\t'background-color': backgroundColor,\r\n    'color':textColor,\r\n    'height':buttonHeight\r\n\t}\"\r\n  [ngClass]=\"{\r\n\t\trounded: roundedButton\r\n\t}\"\r\n\r\nfxLayout=\"{{!iconRight ? 'row' : 'row-reverse'}}\"  fxLayoutAlign=\"center center\" fxLayoutGap=\"1rem\" (click)=\"buttonClicked()\">\r\n  <mat-icon *ngIf=\"displayIcon\" >{{iconLink}}</mat-icon>\r\n  <p [ngStyle]=\"{ 'font-size': buttonFontSize }\">{{title}}</p>\r\n</button>\r\n"
+            "templateData": "\n<button [ngStyle]=\"{\n\t\t'background-color': backgroundColor,\n    'color':textColor,\n    'height':buttonHeight\n\t}\"\n  [ngClass]=\"{\n\t\trounded: roundedButton\n\t}\"\n\nfxLayout=\"{{!iconRight ? 'row' : 'row-reverse'}}\"  fxLayoutAlign=\"center center\" fxLayoutGap=\"1rem\" (click)=\"buttonClicked()\">\n  <mat-icon *ngIf=\"displayIcon\" >{{iconLink}}</mat-icon>\n  <p [ngStyle]=\"{ 'font-size': buttonFontSize }\">{{title}}</p>\n</button>\n"
         },
         {
             "name": "TelcoBarChartComponent",
@@ -758,7 +708,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "html {\r\n\tfont-size: 14px;\r\n\tfont-family: 'Noto Sans', sans-serif;\r\n\tfont-style: normal;\r\n}\r\np {\r\n\tmargin: 0;\r\n}\r\n\r\n.card {\r\n\tpadding: 1rem 1.5rem;\r\n\tbackground: #ffffff;\r\n\tborder: 1px solid #e2e7ef;\r\n\tborder-radius: 0.2rem;\r\n}\r\n\r\n.item-1-upper {\r\n\theight: fit-content;\r\n\tp {\r\n\t\tfont-size: 1rem;\r\n\t\tfont-weight: 400;\r\n\t\tcolor: #636a75;\r\n\t}\r\n}\r\n\r\n.lower-left {\r\n\tp {\r\n\t\tfont-weight: 700;\r\n\t\tfont-size: 1.5rem;\r\n\t\tcolor: #660099;\r\n\t}\r\n}\r\n\r\n.lower-right {\r\n\tbackground: #e0f2ee;\r\n\tborder-radius: 0.1rem;\r\n\theight: 1.8rem;\r\n\tp {\r\n\t\tfont-weight: 700;\r\n\t\tfont-size: 1rem;\r\n\t\ttext-align: center;\r\n\t\tcolor: #36947d;\r\n\t}\r\n}\r\n\r\n.red {\r\n\tbackground: rgba(225, 38, 38, 0.1);\r\n\tp {\r\n\t\tcolor: #e12626;\r\n\t}\r\n}\r\n\r\n.card-item-3 {\r\n\tmin-height: 54px;\r\n\tp {\r\n\t\tpadding: 0.2rem;\r\n\t\tfont-weight: 400;\r\n\t\tfont-size: 1rem;\r\n\t\ttext-align: center;\r\n\t\tcolor: #2f54eb;\r\n\t}\r\n}\r\n",
+                    "data": "html {\n\tfont-size: 14px;\n\tfont-family: 'Noto Sans', sans-serif;\n\tfont-style: normal;\n}\np {\n\tmargin: 0;\n}\n\n.card {\n\tpadding: 1rem 1.5rem;\n\tbackground: #ffffff;\n\tborder: 1px solid #e2e7ef;\n\tborder-radius: 0.2rem;\n}\n\n.item-1-upper {\n\theight: fit-content;\n\tp {\n\t\tfont-size: 1rem;\n\t\tfont-weight: 400;\n\t\tcolor: #636a75;\n\t}\n}\n\n.lower-left {\n\tp {\n\t\tfont-weight: 700;\n\t\tfont-size: 1.5rem;\n\t\tcolor: #660099;\n\t}\n}\n\n.lower-right {\n\tbackground: #e0f2ee;\n\tborder-radius: 0.1rem;\n\theight: 1.8rem;\n\tp {\n\t\tfont-weight: 700;\n\t\tfont-size: 1rem;\n\t\ttext-align: center;\n\t\tcolor: #36947d;\n\t}\n}\n\n.red {\n\tbackground: rgba(225, 38, 38, 0.1);\n\tp {\n\t\tcolor: #e12626;\n\t}\n}\n\n.card-item-3 {\n\tmin-height: 54px;\n\tp {\n\t\tpadding: 0.2rem;\n\t\tfont-weight: 400;\n\t\tfont-size: 1rem;\n\t\ttext-align: center;\n\t\tcolor: #2f54eb;\n\t}\n}\n",
                     "styleUrl": "./telco-cards.component.scss"
                 }
             ],
@@ -771,7 +721,7 @@
                 "args": [],
                 "line": 16
             },
-            "templateData": "<div fxLayout=\"row\" fxLayoutAlign=\"center center\" class=\"card\">\n\t<div fxLayout=\"row\" fxFlex=\"100\" fxLayoutAlign=\"start center\" class=\"card-items\">\n\t\t<div class=\"card-item-1\" fxFlex=\"20\" fxLayoutAlign=\"center center\">\n\t\t\t<img [src]=\"cardIcon\" alt=\"\" />\n\t\t</div>\n\n\t\t<div class=\"card-item-2\" fxFlex=\"48\" fxLayout=\"column\" fxLayoutGap=\"4px\">\n\t\t\t<div class=\"item-1-upper\" fxFlex=\"53\">\n\t\t\t\t<p>{{ cardTitle }}</p>\n\t\t\t</div>\n\n\t\t\t<div class=\"item-2-lower\" fxLayout=\"row\" fxLayoutGap=\"6px\" fxFlex=\"47\" fxLayoutAlign=\"start center\">\n\t\t\t\t<div fxFlex=\"46\" class=\"lower-left\" fxLayout=\"start center\">\n\t\t\t\t\t<p>{{ cardSubtitle }}</p>\n\t\t\t\t</div>\n\n\t\t\t\t<!-- if the given percentage is greater than 0 -->\n\t\t\t\t<div fxFlex=\"52\" class=\"lower-right\" fxLayout=\"row\" fxLayoutAlign=\"space-evenly center\" *ngIf=\"cardSubtitlePercentage >= 0\">\n\t\t\t\t\t<p>{{ cardSubtitlePercentage }}%</p>\n\t\t\t\t\t<img [src]=\"positivePercentageIcon\" alt=\"\" />\n\t\t\t\t</div>\n\n\t\t\t\t<!-- if it is less than 0 -->\n\t\t\t\t<div fxFlex=\"52\" class=\"lower-right red\" fxLayout=\"row\" fxLayoutAlign=\"space-evenly center\" *ngIf=\"cardSubtitlePercentage < 0\">\n\t\t\t\t\t<p>{{ cardSubtitlePercentage }}%</p>\n\t\t\t\t\t<img [src]=\"negativePercentageIcon\" alt=\"\" />\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"card-item-3\" fxFlex=\"32\" fxLayout=\"row\" fxLayoutAlign=\"end end\">\n\t\t\t<p (click)=\"viewAllClick()\">View All</p>\n\t\t</div>\n\t</div>\n</div>\n"
+            "templateData": "<div fxLayout=\"row\" fxLayoutAlign=\"center center\" class=\"card\">\n  <div fxLayout=\"row\" fxFlex=\"100\" fxLayoutAlign=\"start center\" class=\"card-items\">\n    <div class=\"card-item-1\" fxFlex=\"20\" fxLayoutAlign=\"center center\">\n      <img [src]=\"cardIcon\" alt=\"\" />\n    </div>\n\n    <div class=\"card-item-2\" fxFlex=\"48\" fxLayout=\"column\" fxLayoutGap=\"4px\">\n      <div class=\"item-1-upper\" fxFlex=\"53\">\n        <p>{{ cardTitle }}</p>\n      </div>\n\n      <div class=\"item-2-lower\" fxLayout=\"row\" fxLayoutGap=\"6px\" fxFlex=\"47\" fxLayoutAlign=\"start center\">\n        <div fxFlex=\"46\" class=\"lower-left\" fxLayout=\"start center\">\n          <p>{{ cardSubtitle }}</p>\n        </div>\n\n        <!-- if the given percentage is greater than 0 -->\n        <div fxFlex=\"52\" class=\"lower-right\" fxLayout=\"row\" fxLayoutAlign=\"space-evenly center\"\n          *ngIf=\"cardSubtitlePercentage >= 0\">\n          <p>{{ cardSubtitlePercentage }}%</p>\n          <img [src]=\"positivePercentageIcon\" alt=\"\" />\n        </div>\n\n        <!-- if it is less than 0 -->\n        <div fxFlex=\"52\" class=\"lower-right red\" fxLayout=\"row\" fxLayoutAlign=\"space-evenly center\"\n          *ngIf=\"cardSubtitlePercentage < 0\">\n          <p>{{ cardSubtitlePercentage }}%</p>\n          <img [src]=\"negativePercentageIcon\" alt=\"\" />\n        </div>\n      </div>\n    </div>\n\n    <div class=\"card-item-3\" fxFlex=\"32\" fxLayout=\"row\" fxLayoutAlign=\"end end\">\n      <p class=\"pointer\" (click)=\"viewAllClick()\">View All</p>\n    </div>\n  </div>\n</div>\n"
         },
         {
             "name": "TelcoListComponent",
@@ -1386,7 +1336,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container {\r\n\tflex-flow: nowrap row !important;\r\n\t-webkit-flex-direction: row-reverse !important;\r\n\tflex-direction: row-reverse !important;\r\n}\r\n\r\n::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {\r\n\tdisplay: flex;\r\n\tbackground: #e6e6e6;\r\n\tborder-radius: 4px;\r\n}\r\n\r\n::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-icon.right {\r\n\torder: 2;\r\n\tborder-left: 0;\r\n}\r\n\r\n::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-icon.right:hover {\r\n\tbackground: #e6e6e6;\r\n}\r\n\r\n::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-label {\r\n\torder: 1;\r\n\tpadding: 1px 3px;\r\n\tcolor: #000000;\r\n}\r\n\r\n::ng-deep .ng-select.insertSearchIcon.ng-select-multiple .ng-select-container .ng-arrow-wrapper .ng-arrow,\r\n::ng-deep .ng-select.insertSearchIcon.ng-select-single .ng-select-container .ng-arrow-wrapper .ng-arrow {\r\n\tborder-color: none;\r\n\tborder-style: none;\r\n\tborder-width: 0;\r\n}\r\n\r\n::ng-deep .ng-select.insertSearchIcon.ng-select-multiple .ng-select-container .ng-arrow-wrapper,\r\n::ng-deep .ng-select.insertSearchIcon.ng-select-single .ng-select-container .ng-arrow-wrapper {\r\n\tbackground-image: url('https://assets.dds.iata.org/assets/icons/SearchIcon.svg');\r\n\tbackground-repeat: no-repeat;\r\n\tbackground-size: 14px 14px;\r\n\tmargin-top: 6px;\r\n}\r\n\r\n::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {\r\n\ttop: 8px;\r\n\tleft: 5px;\r\n}\r\n\r\n::ng-deep .multiselect-autocomplete.ng-select .ng-select-container {\r\n\toverflow: inherit !important;\r\n}\r\n\r\n::ng-deep .multiselect-autocomplete .exclude-items-container {\r\n\tdisplay: none;\r\n\tposition: absolute;\r\n\tjustify-content: space-between;\r\n\tpadding-left: 0.4rem;\r\n\tpadding-right: 0.4rem;\r\n\tleft: auto;\r\n\tright: -20px;\r\n\ttop: 30px;\r\n\tz-index: 9999;\r\n}\r\n\r\n::ng-deep .multiselect-autocomplete .ng-value.item-length .inner-wrap {\r\n\tposition: relative;\r\n}\r\n\r\n::ng-deep .multiselect-autocomplete .ng-value.item-length {\r\n\tcursor: pointer;\r\n\tz-index: 9;\r\n}\r\n\r\n::ng-deep .multiselect-autocomplete .ng-value.item-length:hover .exclude-items-container {\r\n\tdisplay: flex;\r\n}\r\n\r\n::ng-deep .exclude-items-container > ul.items-other {\r\n\tpadding: 0.1rem;\r\n\tbackground: rgba(0, 0, 0, 0.8);\r\n\tborder-radius: 8px;\r\n\tbox-shadow: 0px 0px 4px 0px #c3c3c3;\r\n\tcolor: #fff;\r\n\tmin-width: 153px;\r\n}\r\n\r\n::ng-deep .exclude-items-container > ul.items-other:after {\r\n\tposition: absolute;\r\n\tcontent: ' ';\r\n\ttop: -8px;\r\n\tright: 14%;\r\n\tmargin-left: -4px;\r\n\twidth: 0;\r\n\theight: 0;\r\n\tborder-left: 8px solid transparent;\r\n\tborder-right: 8px solid transparent;\r\n\tborder-bottom: 8px solid rgba(0, 0, 0, 0.8);\r\n}\r\n\r\n::ng-deep .exclude-items-container > ul.items-other li > span {\r\n\tfont-size: 12px;\r\n}\r\n\r\n::ng-deep .exclude-items-container > ul.items-other li {\r\n\tlist-style: none;\r\n\tdisplay: flex;\r\n\tjustify-content: space-evenly;\r\n\tpadding: 8px 0px;\r\n}\r\n\r\n::ng-deep .exclude-items-container > ul.items-other li span {\r\n\tmargin-left: 0.2rem;\r\n}\r\n\r\n::ng-deep .exclude-items-container > .tags.tags-blue:hover ~ ul.items-other {\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n\r\n::ng-deep .exclude-items-container ul.items-other .items-title {\r\n\tword-break: break-word;\r\n\tmin-width: 100px;\r\n\twhite-space: nowrap;\r\n\toverflow: hidden;\r\n\tline-height: 22px;\r\n\tmargin-left: 0px;\r\n\ttext-overflow: ellipsis;\r\n\tmargin-right: 4px;\r\n}\r\n\r\n::ng-deep .exclude-items-container .tags {\r\n\twidth: 24px;\r\n\theight: 24px;\r\n\tline-height: 22px;\r\n\ttext-align: center;\r\n\tfont-size: 9.6px !important;\r\n\tborder-radius: 50px;\r\n}\r\n\r\n::ng-deep .exclude-items-container .tags.tags-red {\r\n\tcolor: #b34195;\r\n\tbackground-color: #fdeef9;\r\n}\r\n\r\n::ng-deep .exclude-items-container .tags.tags-green {\r\n\tcolor: #23702a;\r\n\tbackground-color: #eaf4eb;\r\n}\r\n\r\n::ng-deep .exclude-items-container .tags.tags-purple {\r\n\tcolor: #511c8e;\r\n\tbackground-color: #efe9f5;\r\n}\r\n\r\n::ng-deep .exclude-items-container .tags.tags-blue {\r\n\twidth: 30px;\r\n\theight: 30px;\r\n\tcolor: #0f197b;\r\n\tfont-weight: 500;\r\n\tfont-size: 12px !important;\r\n\tline-height: 30px;\r\n\tmargin-top: -4px;\r\n\tbackground-color: #f4f5ff;\r\n}\r\n\r\n.option-label-size {\r\n\tfont-size: 12px;\r\n}\r\n\r\n.option-line-height {\r\n\tline-height: 10px;\r\n}\r\n\r\n.item-length {\r\n\tposition: absolute;\r\n\tright: 45px;\r\n}\r\n\r\n.wrap-text {\r\n\tdisplay: block;\r\n\twhite-space: nowrap;\r\n\twidth: 70px;\r\n\toverflow: hidden;\r\n\ttext-overflow: ellipsis;\r\n}\r\n\r\n.initial {\r\n\tdisplay: none;\r\n}\r\n\r\n.with-initial .initial {\r\n\tdisplay: flex;\r\n\tjustify-content: center;\r\n\talign-items: center;\r\n\tborder-radius: 100px;\r\n\tbackground-color: #fdeef9;\r\n\tcolor: #c162a8;\r\n\tfont-size: 7px;\r\n\tpadding: 0;\r\n\theight: 18px;\r\n\twidth: 18px;\r\n\tmargin: 2px;\r\n\tfont-style: normal;\r\n\toverflow: hidden;\r\n}\r\n\r\n.with-initial .ng-value {\r\n\tjustify-content: center;\r\n\talign-items: center;\r\n\tborder: 1px solid #0f197b;\r\n\tborder-radius: 50px !important;\r\n\tbackground: #fff !important;\r\n}\r\n\r\n.with-initial .ng-value .ng-value-label {\r\n\tdisplay: flex;\r\n}\r\n\r\n.with-initial .item-length {\r\n\tbackground-color: #f4f5ff !important;\r\n\tborder-color: #f4f5ff;\r\n\tfont-size: 10px !important;\r\n\tmin-width: 27px;\r\n}\r\n\r\n.with-initial .ng-value.item-length .ng-value-label {\r\n\tpadding: 0;\r\n\tcolor: #0f197b;\r\n}\r\n\r\n.with-initial .ng-value .ng-value-icon.right {\r\n\tbackground-color: #0f197b;\r\n\tborder-radius: 50px;\r\n\tcolor: #fff;\r\n\twidth: 14px;\r\n\theight: 14px;\r\n\tdisplay: flex;\r\n\tjustify-content: center;\r\n\talign-items: center;\r\n\tmargin-right: 4px;\r\n\tfont-size: 13px;\r\n\tpadding: 0;\r\n}\r\n\r\n.option-line-height-code {\r\n\tfont-weight: 400;\r\n\tfont-size: 13px;\r\n\tmargin-top: 2px;\r\n}\r\n\r\n.user-detail {\r\n\tdisplay: flex;\r\n\tmargin-right: 2em;\r\n}\r\n\r\n@media (max-width: 480px) {\r\n\t.with-initial .item-length {\r\n\t\tright: 30px;\r\n\t}\r\n}\r\n",
+                    "data": "::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container {\n\tflex-flow: nowrap row !important;\n\t-webkit-flex-direction: row-reverse !important;\n\tflex-direction: row-reverse !important;\n}\n\n::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {\n\tdisplay: flex;\n\tbackground: #e6e6e6;\n\tborder-radius: 4px;\n}\n\n::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-icon.right {\n\torder: 2;\n\tborder-left: 0;\n}\n\n::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-icon.right:hover {\n\tbackground: #e6e6e6;\n}\n\n::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-label {\n\torder: 1;\n\tpadding: 1px 3px;\n\tcolor: #000000;\n}\n\n::ng-deep .ng-select.insertSearchIcon.ng-select-multiple .ng-select-container .ng-arrow-wrapper .ng-arrow,\n::ng-deep .ng-select.insertSearchIcon.ng-select-single .ng-select-container .ng-arrow-wrapper .ng-arrow {\n\tborder-color: none;\n\tborder-style: none;\n\tborder-width: 0;\n}\n\n::ng-deep .ng-select.insertSearchIcon.ng-select-multiple .ng-select-container .ng-arrow-wrapper,\n::ng-deep .ng-select.insertSearchIcon.ng-select-single .ng-select-container .ng-arrow-wrapper {\n\tbackground-image: url('https://assets.dds.iata.org/assets/icons/SearchIcon.svg');\n\tbackground-repeat: no-repeat;\n\tbackground-size: 14px 14px;\n\tmargin-top: 6px;\n}\n\n::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-placeholder {\n\ttop: 8px;\n\tleft: 5px;\n}\n\n::ng-deep .multiselect-autocomplete.ng-select .ng-select-container {\n\toverflow: inherit !important;\n}\n\n::ng-deep .multiselect-autocomplete .exclude-items-container {\n\tdisplay: none;\n\tposition: absolute;\n\tjustify-content: space-between;\n\tpadding-left: 0.4rem;\n\tpadding-right: 0.4rem;\n\tleft: auto;\n\tright: -20px;\n\ttop: 30px;\n\tz-index: 9999;\n}\n\n::ng-deep .multiselect-autocomplete .ng-value.item-length .inner-wrap {\n\tposition: relative;\n}\n\n::ng-deep .multiselect-autocomplete .ng-value.item-length {\n\tcursor: pointer;\n\tz-index: 9;\n}\n\n::ng-deep .multiselect-autocomplete .ng-value.item-length:hover .exclude-items-container {\n\tdisplay: flex;\n}\n\n::ng-deep .exclude-items-container > ul.items-other {\n\tpadding: 0.1rem;\n\tbackground: rgba(0, 0, 0, 0.8);\n\tborder-radius: 8px;\n\tbox-shadow: 0px 0px 4px 0px #c3c3c3;\n\tcolor: #fff;\n\tmin-width: 153px;\n}\n\n::ng-deep .exclude-items-container > ul.items-other:after {\n\tposition: absolute;\n\tcontent: ' ';\n\ttop: -8px;\n\tright: 14%;\n\tmargin-left: -4px;\n\twidth: 0;\n\theight: 0;\n\tborder-left: 8px solid transparent;\n\tborder-right: 8px solid transparent;\n\tborder-bottom: 8px solid rgba(0, 0, 0, 0.8);\n}\n\n::ng-deep .exclude-items-container > ul.items-other li > span {\n\tfont-size: 12px;\n}\n\n::ng-deep .exclude-items-container > ul.items-other li {\n\tlist-style: none;\n\tdisplay: flex;\n\tjustify-content: space-evenly;\n\tpadding: 8px 0px;\n}\n\n::ng-deep .exclude-items-container > ul.items-other li span {\n\tmargin-left: 0.2rem;\n}\n\n::ng-deep .exclude-items-container > .tags.tags-blue:hover ~ ul.items-other {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n::ng-deep .exclude-items-container ul.items-other .items-title {\n\tword-break: break-word;\n\tmin-width: 100px;\n\twhite-space: nowrap;\n\toverflow: hidden;\n\tline-height: 22px;\n\tmargin-left: 0px;\n\ttext-overflow: ellipsis;\n\tmargin-right: 4px;\n}\n\n::ng-deep .exclude-items-container .tags {\n\twidth: 24px;\n\theight: 24px;\n\tline-height: 22px;\n\ttext-align: center;\n\tfont-size: 9.6px !important;\n\tborder-radius: 50px;\n}\n\n::ng-deep .exclude-items-container .tags.tags-red {\n\tcolor: #b34195;\n\tbackground-color: #fdeef9;\n}\n\n::ng-deep .exclude-items-container .tags.tags-green {\n\tcolor: #23702a;\n\tbackground-color: #eaf4eb;\n}\n\n::ng-deep .exclude-items-container .tags.tags-purple {\n\tcolor: #511c8e;\n\tbackground-color: #efe9f5;\n}\n\n::ng-deep .exclude-items-container .tags.tags-blue {\n\twidth: 30px;\n\theight: 30px;\n\tcolor: #0f197b;\n\tfont-weight: 500;\n\tfont-size: 12px !important;\n\tline-height: 30px;\n\tmargin-top: -4px;\n\tbackground-color: #f4f5ff;\n}\n\n.option-label-size {\n\tfont-size: 12px;\n}\n\n.option-line-height {\n\tline-height: 10px;\n}\n\n.item-length {\n\tposition: absolute;\n\tright: 45px;\n}\n\n.wrap-text {\n\tdisplay: block;\n\twhite-space: nowrap;\n\twidth: 70px;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n}\n\n.initial {\n\tdisplay: none;\n}\n\n.with-initial .initial {\n\tdisplay: flex;\n\tjustify-content: center;\n\talign-items: center;\n\tborder-radius: 100px;\n\tbackground-color: #fdeef9;\n\tcolor: #c162a8;\n\tfont-size: 7px;\n\tpadding: 0;\n\theight: 18px;\n\twidth: 18px;\n\tmargin: 2px;\n\tfont-style: normal;\n\toverflow: hidden;\n}\n\n.with-initial .ng-value {\n\tjustify-content: center;\n\talign-items: center;\n\tborder: 1px solid #0f197b;\n\tborder-radius: 50px !important;\n\tbackground: #fff !important;\n}\n\n.with-initial .ng-value .ng-value-label {\n\tdisplay: flex;\n}\n\n.with-initial .item-length {\n\tbackground-color: #f4f5ff !important;\n\tborder-color: #f4f5ff;\n\tfont-size: 10px !important;\n\tmin-width: 27px;\n}\n\n.with-initial .ng-value.item-length .ng-value-label {\n\tpadding: 0;\n\tcolor: #0f197b;\n}\n\n.with-initial .ng-value .ng-value-icon.right {\n\tbackground-color: #0f197b;\n\tborder-radius: 50px;\n\tcolor: #fff;\n\twidth: 14px;\n\theight: 14px;\n\tdisplay: flex;\n\tjustify-content: center;\n\talign-items: center;\n\tmargin-right: 4px;\n\tfont-size: 13px;\n\tpadding: 0;\n}\n\n.option-line-height-code {\n\tfont-weight: 400;\n\tfont-size: 13px;\n\tmargin-top: 2px;\n}\n\n.user-detail {\n\tdisplay: flex;\n\tmargin-right: 2em;\n}\n\n@media (max-width: 480px) {\n\t.with-initial .item-length {\n\t\tright: 30px;\n\t}\n}\n",
                     "styleUrl": "./telco-list.component.scss"
                 }
             ],
@@ -2263,7 +2213,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "// html,\r\n// body,\r\n// #map_canvas {\r\n//   height: 100%;\r\n//   width: 100%;\r\n//   margin: 0px;\r\n// }\r\n\r\n// #map_canvas {\r\n//   position: relative;\r\n// }\r\n\r\n// .angular-google-map-container {\r\n//   position: absolute;\r\n//   top: 0;\r\n//   bottom: 0;\r\n//   right: 0;\r\n//   left: 0;\r\n// }\r\n.map-wrapper {\r\n\t.map-container {\r\n\t\tposition: absolute;\r\n\t\theight: 100%;\r\n\t\twidth: 100%;\r\n\t\tpadding: 0px;\r\n\t\tborder-radius: 8px;\r\n\t}\r\n}\r\n\r\n// .map-container ::after {\r\n//   position: relative;\r\n//   height: 100%;\r\n//   width: 100%;\r\n//   padding: 0px;\r\n// }\r\n",
+                    "data": "// html,\n// body,\n// #map_canvas {\n//   height: 100%;\n//   width: 100%;\n//   margin: 0px;\n// }\n\n// #map_canvas {\n//   position: relative;\n// }\n\n// .angular-google-map-container {\n//   position: absolute;\n//   top: 0;\n//   bottom: 0;\n//   right: 0;\n//   left: 0;\n// }\n.map-wrapper {\n\t.map-container {\n\t\tposition: absolute;\n\t\theight: 100%;\n\t\twidth: 100%;\n\t\tpadding: 0px;\n\t\tborder-radius: 8px;\n\t}\n}\n\n// .map-container ::after {\n//   position: relative;\n//   height: 100%;\n//   width: 100%;\n//   padding: 0px;\n// }\n",
                     "styleUrl": "./telco-maps.component.scss"
                 }
             ],
@@ -2421,7 +2371,7 @@
         },
         {
             "name": "TelcoSearchComponent",
-            "id": "component-TelcoSearchComponent-956c136ad63830c11ac736b00871ea1ca4f8847b272ad9430e39489eac2abba5910f4d4be3085dab179df9f6da63211a20a33ece5ea2e6273e5654759e8da9ee",
+            "id": "component-TelcoSearchComponent-48168a63e85158bb0946c289cc3c31d636fe8deb04b954349e05e0856b20bb40ae3b04541791aaa57274d08877c60d575b4c0c30445b49ad9536b5311b813895",
             "file": "src/app/telco-search/telco-search.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2443,7 +2393,7 @@
                     "defaultValue": "'#f5f7fb'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 9,
                     "type": "string",
                     "decorators": []
                 },
@@ -2452,7 +2402,7 @@
                     "defaultValue": "'#e2e7ef'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 10,
                     "type": "string",
                     "decorators": []
                 },
@@ -2461,7 +2411,7 @@
                     "defaultValue": "'0px 4px 4px 0px'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 16,
+                    "line": 13,
                     "type": "string",
                     "decorators": []
                 },
@@ -2470,7 +2420,7 @@
                     "defaultValue": "'Noto Sans, sans-serif'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 11,
                     "type": "string",
                     "decorators": []
                 },
@@ -2479,7 +2429,7 @@
                     "defaultValue": "'Search'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 12,
                     "type": "string",
                     "decorators": []
                 }
@@ -2490,7 +2440,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 18,
+                    "line": 14,
                     "type": "EventEmitter"
                 }
             ],
@@ -2500,10 +2450,10 @@
                     "defaultValue": "'../../assets/search-icon.svg'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "String",
+                    "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 9
+                    "line": 16
                 },
                 {
                     "name": "searchText",
@@ -2513,7 +2463,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 10
+                    "line": 17
                 }
             ],
             "methodsClass": [
@@ -2545,11 +2495,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\n\n@Component({\n\tselector: 'app-telco-search',\n\ttemplateUrl: './telco-search.component.html',\n\tstyleUrls: ['./telco-search.component.scss'],\n})\nexport class TelcoSearchComponent implements OnInit {\n\ticonUrl: String = '../../assets/search-icon.svg';\n\tsearchText: string = '';\n\n\t@Input() backgroundColor: string = '#f5f7fb';\n\t@Input() borderColor: string = '#e2e7ef';\n\t@Input() fontFamily: string = 'Noto Sans, sans-serif';\n\t@Input() placeholder: string = 'Search';\n\t@Input() borderRadius: string = '0px 4px 4px 0px';\n\n\t@Output() searchClicked = new EventEmitter<any>();\n\n\tconstructor() {}\n\tngOnInit(): void {}\n\n\tsearchClick() {\n\t\tthis.searchClicked.emit();\n\t}\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\n\n@Component({\n\tselector: 'app-telco-search',\n\ttemplateUrl: './telco-search.component.html',\n\tstyleUrls: ['./telco-search.component.scss'],\n})\nexport class TelcoSearchComponent implements OnInit {\n\t@Input() backgroundColor: string = '#f5f7fb';\n\t@Input() borderColor: string = '#e2e7ef';\n\t@Input() fontFamily: string = 'Noto Sans, sans-serif';\n\t@Input() placeholder: string = 'Search';\n\t@Input() borderRadius: string = '0px 4px 4px 0px';\n\t@Output() searchClicked = new EventEmitter<any>();\n\n\ticonUrl: string = '../../assets/search-icon.svg';\n\tsearchText: string = '';\n\n\tconstructor() { }\n\n\tngOnInit(): void { }\n\n\tsearchClick() {\n\t\tthis.searchClicked.emit();\n\t}\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".search {\r\n\tdisplay: flex;\r\n\talign-items: center;\r\n\tborder: 1px solid;\r\n\twidth: 100%;\r\n\theight: 2rem;\r\n\timg {\r\n\t\twidth: 10%;\r\n\t\theight: 100%;\r\n\t}\r\n\tinput {\r\n\t\twidth: 90%;\r\n\t\tborder: none;\r\n\t\tfont-size: 1rem;\r\n\t}\r\n\tinput:focus {\r\n\t\toutline: none;\r\n\t}\r\n}\r\n",
+                    "data": ".search {\n  display: flex;\n  align-items: center;\n  border: 1px solid;\n  width: 100%;\n  height: 2rem;\n\n  img {\n    margin: 0 10px;\n    height: 80%;\n  }\n\n  input {\n    width: 90%;\n    border: none;\n    font-size: 1rem;\n  }\n\n  input:focus {\n    outline: none;\n  }\n}\n",
                     "styleUrl": "./telco-search.component.scss"
                 }
             ],
@@ -2560,16 +2510,16 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 18
+                "line": 17
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"search\" [ngStyle]=\"{'background': backgroundColor,'border-color':borderColor,'border-radius':borderRadius}\">\n  <img [src]=\"iconUrl\" alt=\"icon\" (click)=\"searchClick()\">\n  <input type=\"text\" [placeholder]=\"placeholder\" [(ngModel)]=\"searchText\" [ngStyle]=\"{'background': backgroundColor,'font-family':fontFamily}\">\n</div>\n"
+            "templateData": "<div class=\"search\" [ngStyle]=\"{'background': '#f5f7fb','border-color':borderColor,'border-radius':borderRadius}\">\n  <img class=\"pointer\" [src]=\"iconUrl\" alt=\"icon\" (click)=\"searchClick()\">\n  <input type=\"text\" [placeholder]=\"placeholder\" [(ngModel)]=\"searchText\"\n    [ngStyle]=\"{'background': backgroundColor,'font-family':fontFamily}\">\n</div>\n"
         },
         {
             "name": "TelcoTableComponent",
-            "id": "component-TelcoTableComponent-cd5debf7bcb4985a21a87a69212fc04e60906cef1904830d700ad9660d208f7eec4acd9dba2c35193c636d879931079fb37eb55c666b8c08c89b4b6251ee7ee4",
+            "id": "component-TelcoTableComponent-cc773ee30b6a8dc2c52e9490e411e5d8c0c8c39b8a1711afc21252c24f73cf9e2089d605d18909c219425d91b2e827bddd2365c658dcb61e0a1fa21ef55a0941",
             "file": "src/app/telco-table/telco-table.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2587,12 +2537,30 @@
             "viewProviders": [],
             "inputsClass": [
                 {
-                    "name": "PaginationShow",
+                    "name": "headings",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "{}",
+                    "decorators": []
+                },
+                {
+                    "name": "paginationShow",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 119,
+                    "line": 13,
                     "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "tableData",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "any",
                     "decorators": []
                 }
             ],
@@ -2600,23 +2568,13 @@
             "propertiesClass": [
                 {
                     "name": "dataSource",
-                    "defaultValue": "new MatTableDataSource<InputDataInterFace>(ELEMENT_DATA)",
+                    "defaultValue": "new MatTableDataSource<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 121
-                },
-                {
-                    "name": "displayedColumns",
-                    "defaultValue": "['SiteName', 'CountofAlarm', 'Timestamp', 'RCA']",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "[]",
-                    "optional": false,
-                    "description": "",
-                    "line": 120
+                    "line": 19
                 },
                 {
                     "name": "paginator",
@@ -2625,7 +2583,7 @@
                     "type": "MatPaginator",
                     "optional": false,
                     "description": "",
-                    "line": 124,
+                    "line": 17,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -2640,7 +2598,7 @@
                     "type": "MatSort",
                     "optional": false,
                     "description": "",
-                    "line": 123,
+                    "line": 16,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -2663,7 +2621,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 149,
+                    "line": 55,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2679,12 +2637,32 @@
                     ]
                 },
                 {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnChanges",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
                     "name": "ngOnInit",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 128,
+                    "line": 23,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -2696,11 +2674,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { LiveAnnouncer } from '@angular/cdk/a11y';\nimport { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';\nimport { MatPaginator } from '@angular/material/paginator';\nimport { MatTableDataSource } from '@angular/material/table';\nimport { MatSort, Sort } from '@angular/material/sort';\n\nexport interface InputDataInterFace {\n\tSiteName: string;\n\tCountofAlarm: string;\n\tTimestamp: { date: string; time: string };\n\tRCA: { iconImg: string; status: string };\n}\n\nconst ELEMENT_DATA: InputDataInterFace[] = [\n\t{\n\t\tSiteName: 'Site Name 1',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2022',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 2',\n\t\tCountofAlarm: '09',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'Cell Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 4',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 5',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 6',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 7',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n];\n\n@Component({\n\tselector: 'app-telco-table',\n\ttemplateUrl: './telco-table.component.html',\n\tstyleUrls: ['./telco-table.component.scss'],\n})\nexport class TelcoTableComponent implements OnInit {\n\t@Input() PaginationShow: boolean = false;\n\tdisplayedColumns = ['SiteName', 'CountofAlarm', 'Timestamp', 'RCA'];\n\tdataSource = new MatTableDataSource<InputDataInterFace>(ELEMENT_DATA);\n\n\t@ViewChild(MatSort) sort: MatSort;\n\t@ViewChild(MatPaginator) paginator: MatPaginator;\n\n\tconstructor(private _liveAnnouncer: LiveAnnouncer) {}\n\n\tngOnInit() {\n\t\tthis.dataSource.paginator = this.paginator;\n\t\tthis.dataSource.sort = this.sort;\n\t\tthis.dataSource.sortingDataAccessor = (item, property) => {\n\t\t\tswitch (property) {\n\t\t\t\tcase 'RCA': {\n\t\t\t\t\treturn item.RCA.status;\n\t\t\t\t}\n\n\t\t\t\tcase 'Timestamp': {\n\t\t\t\t\tlet newDate = new Date(item.Timestamp.date);\n\t\t\t\t\treturn newDate;\n\t\t\t\t}\n\t\t\t\tdefault: {\n\t\t\t\t\treturn item[property];\n\t\t\t\t}\n\t\t\t}\n\t\t};\n\t}\n\n\t// for sorting\n\tannounceSortChange(sortState: Sort) {\n\t\tif (sortState.direction) {\n\t\t\tthis._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);\n\t\t} else {\n\t\t\tthis._liveAnnouncer.announce('Sorting cleared');\n\t\t}\n\t}\n}\n",
+            "sourceCode": "import { LiveAnnouncer } from '@angular/cdk/a11y';\nimport { AfterViewInit, Component, Input, OnInit, ViewChild, OnChanges } from '@angular/core';\nimport { MatPaginator } from '@angular/material/paginator';\nimport { MatTableDataSource } from '@angular/material/table';\nimport { MatSort, Sort } from '@angular/material/sort';\n\n@Component({\n\tselector: 'app-telco-table',\n\ttemplateUrl: './telco-table.component.html',\n\tstyleUrls: ['./telco-table.component.scss'],\n})\nexport class TelcoTableComponent implements OnInit, OnChanges, AfterViewInit {\n\t@Input() paginationShow: boolean = false;\n\t@Input() tableData: any = [];\n\t@Input() headings = [];\n\t@ViewChild(MatSort) sort: MatSort;\n\t@ViewChild(MatPaginator) paginator: MatPaginator;\n\n\tdataSource = new MatTableDataSource<any>();\n\n\tconstructor(private _liveAnnouncer: LiveAnnouncer) { }\n\n\tngOnInit() {}\n\n\tngAfterViewInit() {\n\t\tthis.dataSource.sort = this.sort;\n\t}\n\n\tngOnChanges() {\n\n\t\tthis.dataSource = new MatTableDataSource<any>(this.tableData);\n\t\t// this.displayedColumns = this.headings.map((value: any) => value.id);\n\t\t// this.dataSource.paginator = this.paginator;\n\n\t\t// this.dataSource.sort = this.sort;\n\t\t// this.dataSource.sortingDataAccessor = (item, property) => {\n\t\t// \tswitch (property) {\n\t\t// \t\tcase 'RCA': {\n\t\t// \t\t\treturn item.RCA.status;\n\t\t// \t\t}\n\n\t\t// \t\tcase 'Timestamp': {\n\t\t// \t\t\tlet newDate = new Date(item.Timestamp.date);\n\t\t// \t\t\treturn newDate;\n\t\t// \t\t}\n\n\t\t// \t\tdefault: {\n\t\t// \t\t\treturn item[property];\n\t\t// \t\t}\n\t\t// \t}\n\t\t// };\n\t}\n\n\t// for sorting\n\tannounceSortChange(sortState: Sort) {\n\t\tif (sortState.direction) {\n\t\t\tthis._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);\n\t\t} else {\n\t\t\tthis._liveAnnouncer.announce('Sorting cleared');\n\t\t}\n\t}\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "html {\r\n\tfont-size: 14px;\r\n\tfont-family: 'Noto Sans', sans-serif;\r\n\tfont-style: normal;\r\n}\r\n\r\nth.mat-sort-header-sorted {\r\n\tcolor: black;\r\n}\r\n\r\n.mat-table {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n}\r\n.hidden {\r\n\tdisplay: none;\r\n}\r\n\r\n.mat-body p,\r\n.mat-body-1 p,\r\n::ng-deep.mat-typography p {\r\n\tmargin: revert !important;\r\n}\r\n\r\n.mat-header-cell {\r\n\tcolor: #333333;\r\n\tfont-weight: 600;\r\n\tfont-size: 1rem;\r\n}\r\n\r\n.mat-cell {\r\n\tcolor: #594e4e;\r\n\tfont-weight: 400;\r\n\tfont-size: 1rem;\r\n}\r\n.mat-column-select {\r\n\toverflow: initial;\r\n}\r\n\r\n.RCA-cell {\r\n\tp {\r\n\t\tpadding-left: 1rem;\r\n\t}\r\n}\r\n\r\n.mat-paginator-sticky {\r\n\tbottom: 0;\r\n\tposition: sticky;\r\n\tz-index: 10;\r\n}\r\n",
+                    "data": "html {\n\tfont-size: 14px;\n\tfont-family: 'Noto Sans', sans-serif;\n\tfont-style: normal;\n}\n\nth.mat-sort-header-sorted {\n\tcolor: black;\n}\n\n.mat-table {\n\twidth: 100%;\n\theight: 100%;\n}\n.hidden {\n\tdisplay: none;\n}\n\n.mat-body p,\n.mat-body-1 p,\n::ng-deep.mat-typography p {\n\tmargin: revert !important;\n}\n\n.mat-header-cell {\n\tcolor: #333333;\n\tfont-weight: 600;\n\tfont-size: 1rem;\n}\n\n.mat-cell {\n\tcolor: #594e4e;\n\tfont-weight: 400;\n\tfont-size: 1rem;\n}\n.mat-column-select {\n\toverflow: initial;\n}\n\n.RCA-cell {\n\tp {\n\t\tpadding-left: 1rem;\n\t}\n}\n\n.mat-paginator-sticky {\n\tbottom: 0;\n\tposition: sticky;\n\tz-index: 10;\n}\n",
                     "styleUrl": "./telco-table.component.scss"
                 }
             ],
@@ -2718,7 +2696,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 124,
+                "line": 19,
                 "jsdoctags": [
                     {
                         "name": "_liveAnnouncer",
@@ -2732,15 +2710,17 @@
                 ]
             },
             "implements": [
-                "OnInit"
+                "OnInit",
+                "OnChanges",
+                "AfterViewInit"
             ],
-            "templateData": "<div class=\"mat-elevation-z8\" *ngIf=\"dataSource\">\r\n\t<table mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"announceSortChange($event)\">\r\n\t\t<!-- to add all the rows -->\r\n\t\t<ng-container matColumnDef=\"{{ column }}\" *ngFor=\"let column of displayedColumns\">\r\n\t\t\t<th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>\r\n\t\t\t<td mat-cell *matCellDef=\"let element\">\r\n\t\t\t\t<div [ngSwitch]=\"column\">\r\n\t\t\t\t\t<div *ngSwitchCase=\"'Timestamp'\">\r\n\t\t\t\t\t\t<p>{{ element[column].date }}</p>\r\n\t\t\t\t\t\t<p>{{ element[column].time }}</p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div *ngSwitchCase=\"'RCA'\" class=\"flex-horizontal RCA-cell\">\r\n\t\t\t\t\t\t<img [src]=\"element[column].iconImg\" alt=\"\" />\r\n\t\t\t\t\t\t<p>{{ element[column].status }}</p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div *ngSwitchDefault>\r\n\t\t\t\t\t\t<p>{{ element[column] }}</p>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</td>\r\n\t\t</ng-container>\r\n\r\n\t\t<tr mat-header-row *matHeaderRowDef=\"displayedColumns; sticky: true\"></tr>\r\n\t\t<tr mat-row *matRowDef=\"let row; columns: displayedColumns\"></tr>\r\n\t</table>\r\n\r\n\t<mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons aria-label=\"Select page of periodic elements\"> </mat-paginator>\r\n</div>\r\n"
+            "templateData": "<div class=\"mat-elevation-z8\" *ngIf=\"dataSource\">\n  <!-- <table mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"announceSortChange($event)\">\n    <ng-container matColumnDef=\"{{ column }}\" *ngFor=\"let column of displayedColumns\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>\n      <td mat-cell *matCellDef=\"let element\">\n        <div [ngSwitch]=\"column\">\n          <div *ngSwitchCase=\"'Timestamp'\">\n            <p>{{ element[column].date }}</p>\n            <p>{{ element[column].time }}</p>\n          </div>\n          <div *ngSwitchCase=\"'RCA'\" class=\"flex-horizontal RCA-cell\">\n            <img [src]=\"element[column].iconImg\" alt=\"\" />\n            <p>{{ element[column].status }}</p>\n          </div>\n          <div *ngSwitchDefault>\n            <p>{{ element[column] }}</p>\n          </div>\n        </div>\n      </td>\n    </ng-container>\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns; sticky: true\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns\"></tr>\n  </table> -->\n  <table mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"announceSortChange($event)\"\n    class=\"mat-elevation-z8\">\n    <ng-container *ngFor=\"let heading of headings\" matColumnDef={{heading}}>\n      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription=\"Sort by number\">\n        {{heading}}\n      </th>\n      <td mat-cell *matCellDef=\"let element\"> {{element[heading]}} </td>\n    </ng-container>\n    <tr mat-header-row *matHeaderRowDef=\"headings;sticky: true\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: headings;\"></tr>\n  </table>\n  <!-- <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons aria-label=\"Select page of periodic elements\">\n  </mat-paginator> -->\n</div>\n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-127637e696b3254bc64089b61bcaf43fa7624407ae255d619794ae2fe3d17a14a19f3eb59018b944e5ed78e80a0c55347353cd0a683469e40b0ca904e759d03b",
+            "id": "module-AppModule-746998444178214bd5fe7b276bbcffb63466ed4657e5b7459eb61f58ff8b1741ebddc784a01c0f39b85d33970a627632c23b48c141821aeeb05722b2132ee5eb",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
@@ -2790,7 +2770,7 @@
                     ]
                 }
             ],
-            "sourceCode": "import { AppComponent } from './app.component';\r\nimport { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';\r\nimport { createCustomElement } from '@angular/elements';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { NgSelectModule } from '@ng-select/ng-select';\r\nimport { ButtonComponent } from './button/button.component';\r\nimport { TelcoListComponent } from './telco-list/telco-list.component';\r\nimport { TelcoSearchComponent } from './telco-search/telco-search.component';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { FlexLayoutModule, FlexModule } from '@angular/flex-layout';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { TelcoCardsComponent } from './telco-cards/telco-cards.component';\r\nimport { TelcoMapsComponent } from './telco-maps/telco-maps.component';\r\nimport {} from 'google-maps';\r\nimport { TelcoBarChartComponent } from './telco-charts/telco-bar-chart/telco-bar-chart.component';\r\nimport { TelcoPieChartComponent } from './telco-charts/telco-pie-chart/telco-pie-chart.component';\r\nimport { PlotlyViaCDNModule } from 'angular-plotly.js';\r\nimport { TelcoTableComponent } from './telco-table/telco-table.component';\r\n\r\n// for table component\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatPaginatorModule } from '@angular/material/paginator';\r\nimport { MatChipsModule } from '@angular/material/chips';\r\nimport { MatSortModule } from '@angular/material/sort';\r\n\r\n// array of web components for exporting\r\nconst components = [\r\n\t{\r\n\t\tname: 'telco-cards',\r\n\t\tcomponent: TelcoCardsComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-button',\r\n\t\tcomponent: ButtonComponent,\r\n\t},\r\n\r\n\t{\r\n\t\tname: 'telco-list',\r\n\t\tcomponent: TelcoListComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-maps',\r\n\t\tcomponent: TelcoMapsComponent,\r\n\t},\r\n];\r\n\r\n@NgModule({\r\n\tdeclarations: [\r\n\t\tAppComponent,\r\n\t\tButtonComponent,\r\n\t\tTelcoListComponent,\r\n\t\tTelcoSearchComponent,\r\n\t\tTelcoCardsComponent,\r\n\t\tTelcoMapsComponent,\r\n\t\tTelcoBarChartComponent,\r\n\t\tTelcoPieChartComponent,\r\n\t\tTelcoTableComponent,\r\n\t],\r\n\timports: [\r\n\t\tBrowserModule,\r\n\t\tNgSelectModule,\r\n\t\tFormsModule,\r\n\t\tBrowserAnimationsModule,\r\n\t\tMatIconModule,\r\n\t\tPlotlyViaCDNModule,\r\n\t\tFlexLayoutModule,\r\n\t\tMatTableModule,\r\n\t\tMatPaginatorModule,\r\n\t\tMatChipsModule,\r\n\t\tMatSortModule,\r\n\t\tFlexModule,\r\n\t],\r\n\tproviders: [],\r\n\tbootstrap: [AppComponent],\r\n\tentryComponents: components.map((e) => e.component),\r\n})\r\nexport class AppModule {\r\n\tconstructor(private injector: Injector) {\r\n\t\tthis.createWebComponents(components, injector);\r\n\t}\r\n\r\n\tcreateWebComponents(component: any, injector: Injector) {\r\n\t\tcomponent.forEach((c: any) => {\r\n\t\t\tconst ce = createCustomElement(c.component, { injector });\r\n\r\n\t\t\tcustomElements.define(c.name, ce);\r\n\r\n\t\t\tc['web-component'] = ce;\r\n\t\t});\r\n\t}\r\n}\r\n",
+            "sourceCode": "import { AppComponent } from './app.component';\nimport { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';\nimport { createCustomElement } from '@angular/elements';\nimport { FormsModule } from '@angular/forms';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { NgSelectModule } from '@ng-select/ng-select';\nimport { ButtonComponent } from './button/button.component';\nimport { TelcoListComponent } from './telco-list/telco-list.component';\nimport { TelcoSearchComponent } from './telco-search/telco-search.component';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FlexLayoutModule, FlexModule } from '@angular/flex-layout';\nimport { MatIconModule } from '@angular/material/icon';\nimport { TelcoCardsComponent } from './telco-cards/telco-cards.component';\nimport { TelcoMapsComponent } from './telco-maps/telco-maps.component';\nimport {} from 'google-maps';\nimport { TelcoBarChartComponent } from './telco-charts/telco-bar-chart/telco-bar-chart.component';\nimport { TelcoPieChartComponent } from './telco-charts/telco-pie-chart/telco-pie-chart.component';\nimport { PlotlyViaCDNModule } from 'angular-plotly.js';\nimport { TelcoTableComponent } from './telco-table/telco-table.component';\n\n// for table component\nimport { MatTableModule } from '@angular/material/table';\nimport { MatPaginatorModule } from '@angular/material/paginator';\nimport { MatChipsModule } from '@angular/material/chips';\nimport { MatSortModule } from '@angular/material/sort';\n\n// array of web components for exporting\nconst components = [\n\t{\n\t\tname: 'telco-cards',\n\t\tcomponent: TelcoCardsComponent,\n\t},\n\t{\n\t\tname: 'telco-button',\n\t\tcomponent: ButtonComponent,\n\t},\n\n\t{\n\t\tname: 'telco-list',\n\t\tcomponent: TelcoListComponent,\n\t},\n\t{\n\t\tname: 'telco-maps',\n\t\tcomponent: TelcoMapsComponent,\n\t},\n];\n\n@NgModule({\n\tdeclarations: [\n\t\tAppComponent,\n\t\tButtonComponent,\n\t\tTelcoListComponent,\n\t\tTelcoSearchComponent,\n\t\tTelcoCardsComponent,\n\t\tTelcoMapsComponent,\n\t\tTelcoBarChartComponent,\n\t\tTelcoPieChartComponent,\n\t\tTelcoTableComponent,\n\t],\n\timports: [\n\t\tBrowserModule,\n\t\tNgSelectModule,\n\t\tFormsModule,\n\t\tBrowserAnimationsModule,\n\t\tMatIconModule,\n\t\tPlotlyViaCDNModule,\n\t\tFlexLayoutModule,\n\t\tMatTableModule,\n\t\tMatPaginatorModule,\n\t\tMatChipsModule,\n\t\tMatSortModule,\n\t\tFlexModule,\n\t],\n\tproviders: [],\n\tbootstrap: [AppComponent],\n\tentryComponents: components.map((e) => e.component),\n})\nexport class AppModule {\n\tconstructor(private injector: Injector) {\n\t\tthis.createWebComponents(components, injector);\n\t}\n\n\tcreateWebComponents(component: any, injector: Injector) {\n\t\tcomponent.forEach((c: any) => {\n\t\t\tconst ce = createCustomElement(c.component, { injector });\n\n\t\t\tcustomElements.define(c.name, ce);\n\n\t\t\tc['web-component'] = ce;\n\t\t});\n\t}\n}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2861,7 +2841,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "IMap",
-                "defaultValue": "{\r\n\tconfig: {\r\n\t\ticonDefault: 'SITE',\r\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\r\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\r\n\t\ticonColor: pcolors['application']['palette-2'],\r\n\t\ticonAnchorX: 11,\r\n\t\ticonAnchorY: 11,\r\n\t\tzoomLevelToChangeIcon: 16,\r\n\t\tcenterOnMapUpdate: true,\r\n\t\tshowMesh: true,\r\n\t},\r\n\tmarkers: generateMarkers(1000, [18.6052695, 73.7522604], [18.431485, 73.9796919]),\r\n}"
+                "defaultValue": "{\n\tconfig: {\n\t\ticonDefault: 'SITE',\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\n\t\ticonColor: pcolors['application']['palette-2'],\n\t\ticonAnchorX: 11,\n\t\ticonAnchorY: 11,\n\t\tzoomLevelToChangeIcon: 16,\n\t\tcenterOnMapUpdate: true,\n\t\tshowMesh: true,\n\t},\n\tmarkers: generateMarkers(1000, [18.6052695, 73.7522604], [18.431485, 73.9796919]),\n}"
             },
             {
                 "name": "argsConfig",
@@ -2871,7 +2851,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "IMap",
-                "defaultValue": "{\r\n\tconfig: {\r\n\t\ticonDefault: 'SITE',\r\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\r\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\r\n\t\ticonColor: pcolors['application']['palette-12'],\r\n\t\ticonAnchorX: 15,\r\n\t\ticonAnchorY: 15,\r\n\t\tzoomLevelToChangeIcon: 10,\r\n\t\tcenterOnMapUpdate: true,\r\n\t\tshowMesh: true,\r\n\t},\r\n\tmarkers: generateMarkers(1000, [18.6052695, 73.7522604], [18.431485, 73.9796919]),\r\n}"
+                "defaultValue": "{\n\tconfig: {\n\t\ticonDefault: 'SITE',\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\n\t\ticonColor: pcolors['application']['palette-12'],\n\t\ticonAnchorX: 15,\n\t\ticonAnchorY: 15,\n\t\tzoomLevelToChangeIcon: 10,\n\t\tcenterOnMapUpdate: true,\n\t\tshowMesh: true,\n\t},\n\tmarkers: generateMarkers(1000, [18.6052695, 73.7522604], [18.431485, 73.9796919]),\n}"
             },
             {
                 "name": "argsMarkers",
@@ -2881,7 +2861,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "IMap",
-                "defaultValue": "{\r\n\tconfig: {\r\n\t\ticonDefault: 'SITE',\r\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\r\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\r\n\t\ticonColor: pcolors['application']['palette-2'],\r\n\t\ticonAnchorX: 11,\r\n\t\ticonAnchorY: 11,\r\n\t\tzoomLevelToChangeIcon: 16,\r\n\t\tcenterOnMapUpdate: true,\r\n\t\tshowMesh: true,\r\n\t},\r\n\tmarkers: generateMarkers(1000, [30.6052695, 33.7522604], [38.431485, 34.9796919]),\r\n}"
+                "defaultValue": "{\n\tconfig: {\n\t\ticonDefault: 'SITE',\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\n\t\ticonColor: pcolors['application']['palette-2'],\n\t\ticonAnchorX: 11,\n\t\ticonAnchorY: 11,\n\t\tzoomLevelToChangeIcon: 16,\n\t\tcenterOnMapUpdate: true,\n\t\tshowMesh: true,\n\t},\n\tmarkers: generateMarkers(1000, [30.6052695, 33.7522604], [38.431485, 34.9796919]),\n}"
             },
             {
                 "name": "Bar",
@@ -2941,7 +2921,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[\r\n\t{\r\n\t\tname: 'telco-cards',\r\n\t\tcomponent: TelcoCardsComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-button',\r\n\t\tcomponent: ButtonComponent,\r\n\t},\r\n\r\n\t{\r\n\t\tname: 'telco-list',\r\n\t\tcomponent: TelcoListComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-maps',\r\n\t\tcomponent: TelcoMapsComponent,\r\n\t},\r\n]"
+                "defaultValue": "[\n\t{\n\t\tname: 'telco-cards',\n\t\tcomponent: TelcoCardsComponent,\n\t},\n\t{\n\t\tname: 'telco-button',\n\t\tcomponent: ButtonComponent,\n\t},\n\n\t{\n\t\tname: 'telco-list',\n\t\tcomponent: TelcoListComponent,\n\t},\n\t{\n\t\tname: 'telco-maps',\n\t\tcomponent: TelcoMapsComponent,\n\t},\n]"
             },
             {
                 "name": "Config",
@@ -2964,6 +2944,16 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
+                "name": "data",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\n\t{position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},\n\t{position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},\n\t{position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},\n\t{position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},\n\t{position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},\n\t{position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},\n\t{position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},\n\t{position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},\n\t{position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},\n\t{position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},\n  ]"
+            },
+            {
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2974,16 +2964,6 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "ELEMENT_DATA",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/telco-table/telco-table.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "InputDataInterFace[]",
-                "defaultValue": "[\n\t{\n\t\tSiteName: 'Site Name 1',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2022',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 2',\n\t\tCountofAlarm: '09',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'Cell Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 4',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 5',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 6',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 7',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n]"
-            },
-            {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -2991,7 +2971,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  production: true\r\n}"
+                "defaultValue": "{\n  production: true\n}"
             },
             {
                 "name": "environment",
@@ -3001,7 +2981,27 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  production: false\r\n}"
+                "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "headings",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "['position', 'name', 'weight', 'symbol']"
+            },
+            {
+                "name": "Line",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-bar-chart.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "MarkerClusterer",
@@ -3030,7 +3030,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[\r\n\t{\r\n\t\tid: 'mark-1',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t\tmesh: ['mark-40', 'mark-30'],\r\n\t},\r\n\t{\r\n\t\tid: 'mark-2',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-3',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-4',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-5',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-6',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-7',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t\tcolor: '#FFBF00',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-8',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t\tcolor: '#33B54D',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-9',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-10',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-11',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-12',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-13',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-14',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-15',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-16',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-17',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-18',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-19',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-20',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-21',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-22',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-23',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-24',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-25',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-26',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-27',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-28',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-29',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-30',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-31',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-32',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-33',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-34',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-35',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-36',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-37',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-38',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-39',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-40',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n]"
+                "defaultValue": "[\n\t{\n\t\tid: 'mark-1',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t\tmesh: ['mark-40', 'mark-30'],\n\t},\n\t{\n\t\tid: 'mark-2',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-3',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-4',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-5',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-6',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-7',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t\tcolor: '#FFBF00',\n\t},\n\t{\n\t\tid: 'mark-8',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t\tcolor: '#33B54D',\n\t},\n\t{\n\t\tid: 'mark-9',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-10',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-11',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-12',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-13',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-14',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-15',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-16',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-17',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-18',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-19',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-20',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-21',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-22',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-23',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-24',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-25',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-26',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-27',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-28',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-29',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-30',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-31',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-32',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-33',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-34',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-35',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-36',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-37',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-38',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-39',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-40',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n]"
             },
             {
                 "name": "OverlappingMarkerSpiderfier",
@@ -3088,7 +3088,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TelcoBarChartComponent>",
-                "defaultValue": "(args: TelcoBarChartComponent) => ({\r\n\tprops: args,\r\n})"
+                "defaultValue": "(args: TelcoBarChartComponent) => ({\n\tprops: args,\n})"
             },
             {
                 "name": "Template",
@@ -3098,7 +3098,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\r\n\tComponent: ButtonComponent,\r\n\tprops: args,\r\n})"
+                "defaultValue": "(args: ButtonComponent) => ({\n\tComponent: ButtonComponent,\n\tprops: args,\n})"
             },
             {
                 "name": "Template",
@@ -3108,7 +3108,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TelcoCardsComponent>",
-                "defaultValue": "(args: TelcoCardsComponent) => ({\r\n\tComponent: TelcoCardsComponent,\r\n\tprops: args,\r\n})"
+                "defaultValue": "(args: TelcoCardsComponent) => ({\n\tComponent: TelcoCardsComponent,\n\tprops: args,\n})"
             },
             {
                 "name": "Template",
@@ -3118,7 +3118,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TelcoListComponent>",
-                "defaultValue": "(args: TelcoListComponent) => ({\r\n\tComponent: TelcoListComponent,\r\n\tprops: args,\r\n})"
+                "defaultValue": "(args: TelcoListComponent) => ({\n\tComponent: TelcoListComponent,\n\tprops: args,\n})"
             },
             {
                 "name": "Template",
@@ -3128,7 +3128,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TelcoMapsComponent>",
-                "defaultValue": "(args: TelcoMapsComponent) => ({\r\n\tcomponent: TelcoMapsComponent,\r\n\tprops: args,\r\n})"
+                "defaultValue": "(args: TelcoMapsComponent) => ({\n\tcomponent: TelcoMapsComponent,\n\tprops: args,\n})"
             },
             {
                 "name": "Template",
@@ -3138,17 +3138,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TelcoPieChartComponent>",
-                "defaultValue": "(args: TelcoPieChartComponent) => ({\r\n\tprops: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/telco-table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<TelcoTableComponent>",
-                "defaultValue": "(args: TelcoTableComponent) => ({\r\n\tComponent: TelcoTableComponent,\r\n\tprops: args,\r\n})"
+                "defaultValue": "(args: TelcoPieChartComponent) => ({\n\tprops: args,\n})"
             },
             {
                 "name": "Template",
@@ -3158,7 +3148,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TelcoSearchComponent>",
-                "defaultValue": "(args: TelcoSearchComponent) => ({\r\n\tComponent: TelcoSearchComponent,\r\n\tprops: args,\r\n})"
+                "defaultValue": "(args: TelcoSearchComponent) => ({\n\tComponent: TelcoSearchComponent,\n\tprops: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/telco-table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TelcoTableComponent>",
+                "defaultValue": "(args: TelcoTableComponent) => ({\n\tComponent: TelcoTableComponent,\n\tprops: args,\n})"
             }
         ],
         "functions": [
@@ -3245,7 +3245,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "IMap",
-                    "defaultValue": "{\r\n\tconfig: {\r\n\t\ticonDefault: 'SITE',\r\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\r\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\r\n\t\ticonColor: pcolors['application']['palette-2'],\r\n\t\ticonAnchorX: 11,\r\n\t\ticonAnchorY: 11,\r\n\t\tzoomLevelToChangeIcon: 16,\r\n\t\tcenterOnMapUpdate: true,\r\n\t\tshowMesh: true,\r\n\t},\r\n\tmarkers: generateMarkers(1000, [18.6052695, 73.7522604], [18.431485, 73.9796919]),\r\n}"
+                    "defaultValue": "{\n\tconfig: {\n\t\ticonDefault: 'SITE',\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\n\t\ticonColor: pcolors['application']['palette-2'],\n\t\ticonAnchorX: 11,\n\t\ticonAnchorY: 11,\n\t\tzoomLevelToChangeIcon: 16,\n\t\tcenterOnMapUpdate: true,\n\t\tshowMesh: true,\n\t},\n\tmarkers: generateMarkers(1000, [18.6052695, 73.7522604], [18.431485, 73.9796919]),\n}"
                 },
                 {
                     "name": "argsConfig",
@@ -3255,7 +3255,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "IMap",
-                    "defaultValue": "{\r\n\tconfig: {\r\n\t\ticonDefault: 'SITE',\r\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\r\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\r\n\t\ticonColor: pcolors['application']['palette-12'],\r\n\t\ticonAnchorX: 15,\r\n\t\ticonAnchorY: 15,\r\n\t\tzoomLevelToChangeIcon: 10,\r\n\t\tcenterOnMapUpdate: true,\r\n\t\tshowMesh: true,\r\n\t},\r\n\tmarkers: generateMarkers(1000, [18.6052695, 73.7522604], [18.431485, 73.9796919]),\r\n}"
+                    "defaultValue": "{\n\tconfig: {\n\t\ticonDefault: 'SITE',\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\n\t\ticonColor: pcolors['application']['palette-12'],\n\t\ticonAnchorX: 15,\n\t\ticonAnchorY: 15,\n\t\tzoomLevelToChangeIcon: 10,\n\t\tcenterOnMapUpdate: true,\n\t\tshowMesh: true,\n\t},\n\tmarkers: generateMarkers(1000, [18.6052695, 73.7522604], [18.431485, 73.9796919]),\n}"
                 },
                 {
                     "name": "argsMarkers",
@@ -3265,7 +3265,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "IMap",
-                    "defaultValue": "{\r\n\tconfig: {\r\n\t\ticonDefault: 'SITE',\r\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\r\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\r\n\t\ticonColor: pcolors['application']['palette-2'],\r\n\t\ticonAnchorX: 11,\r\n\t\ticonAnchorY: 11,\r\n\t\tzoomLevelToChangeIcon: 16,\r\n\t\tcenterOnMapUpdate: true,\r\n\t\tshowMesh: true,\r\n\t},\r\n\tmarkers: generateMarkers(1000, [30.6052695, 33.7522604], [38.431485, 34.9796919]),\r\n}"
+                    "defaultValue": "{\n\tconfig: {\n\t\ticonDefault: 'SITE',\n\t\ticonZoomed: 'SITE_ZOOMED_ALT',\n\t\ticonSpiderfied: 'NETWORK_ELEMENT',\n\t\ticonColor: pcolors['application']['palette-2'],\n\t\ticonAnchorX: 11,\n\t\ticonAnchorY: 11,\n\t\tzoomLevelToChangeIcon: 16,\n\t\tcenterOnMapUpdate: true,\n\t\tshowMesh: true,\n\t},\n\tmarkers: generateMarkers(1000, [30.6052695, 33.7522604], [38.431485, 34.9796919]),\n}"
                 },
                 {
                     "name": "Config",
@@ -3305,7 +3305,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[\r\n\t{\r\n\t\tid: 'mark-1',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t\tmesh: ['mark-40', 'mark-30'],\r\n\t},\r\n\t{\r\n\t\tid: 'mark-2',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-3',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-4',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-5',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-6',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-7',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t\tcolor: '#FFBF00',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-8',\r\n\t\tlat: '60.393051',\r\n\t\tlng: '5.324171',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torgallmenningen',\r\n\t\tlink: '#thisisalink',\r\n\t\tcolor: '#33B54D',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-9',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-10',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-11',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-12',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-13',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-14',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-15',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-16',\r\n\t\tlat: '60.394998',\r\n\t\tlng: '5.325203',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Torget 2',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-17',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-18',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-19',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-20',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-21',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-22',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-23',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-24',\r\n\t\tlat: '60.342844',\r\n\t\tlng: '5.336836',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Gamlehaugen',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-25',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-26',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-27',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-28',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-29',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-30',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-31',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-32',\r\n\t\tlat: '59.908062',\r\n\t\tlng: '10.751341',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Operahuset',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-33',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-34',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-35',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-36',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-37',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-38',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-39',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n\t{\r\n\t\tid: 'mark-40',\r\n\t\tlat: '59.948985',\r\n\t\tlng: '10.733869',\r\n\t\ttitle: 'Name',\r\n\t\tlabel: 'Ullevål',\r\n\t\tlink: '#thisisalink',\r\n\t},\r\n]"
+                    "defaultValue": "[\n\t{\n\t\tid: 'mark-1',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t\tmesh: ['mark-40', 'mark-30'],\n\t},\n\t{\n\t\tid: 'mark-2',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-3',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-4',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-5',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-6',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-7',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t\tcolor: '#FFBF00',\n\t},\n\t{\n\t\tid: 'mark-8',\n\t\tlat: '60.393051',\n\t\tlng: '5.324171',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torgallmenningen',\n\t\tlink: '#thisisalink',\n\t\tcolor: '#33B54D',\n\t},\n\t{\n\t\tid: 'mark-9',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-10',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-11',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-12',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-13',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-14',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-15',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-16',\n\t\tlat: '60.394998',\n\t\tlng: '5.325203',\n\t\ttitle: 'Name',\n\t\tlabel: 'Torget 2',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-17',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-18',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-19',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-20',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-21',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-22',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-23',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-24',\n\t\tlat: '60.342844',\n\t\tlng: '5.336836',\n\t\ttitle: 'Name',\n\t\tlabel: 'Gamlehaugen',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-25',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-26',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-27',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-28',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-29',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-30',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-31',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-32',\n\t\tlat: '59.908062',\n\t\tlng: '10.751341',\n\t\ttitle: 'Name',\n\t\tlabel: 'Operahuset',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-33',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-34',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-35',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-36',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-37',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-38',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-39',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n\t{\n\t\tid: 'mark-40',\n\t\tlat: '59.948985',\n\t\tlng: '10.733869',\n\t\ttitle: 'Name',\n\t\tlabel: 'Ullevål',\n\t\tlink: '#thisisalink',\n\t},\n]"
                 },
                 {
                     "name": "pcolors",
@@ -3325,12 +3325,22 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TelcoMapsComponent>",
-                    "defaultValue": "(args: TelcoMapsComponent) => ({\r\n\tcomponent: TelcoMapsComponent,\r\n\tprops: args,\r\n})"
+                    "defaultValue": "(args: TelcoMapsComponent) => ({\n\tcomponent: TelcoMapsComponent,\n\tprops: args,\n})"
                 }
             ],
             "src/stories/telco-bar-chart.stories.ts": [
                 {
                     "name": "Bar",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/telco-bar-chart.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Line",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/stories/telco-bar-chart.stories.ts",
@@ -3347,7 +3357,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TelcoBarChartComponent>",
-                    "defaultValue": "(args: TelcoBarChartComponent) => ({\r\n\tprops: args,\r\n})"
+                    "defaultValue": "(args: TelcoBarChartComponent) => ({\n\tprops: args,\n})"
                 }
             ],
             "src/stories/telco-card.stories.ts": [
@@ -3369,7 +3379,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TelcoCardsComponent>",
-                    "defaultValue": "(args: TelcoCardsComponent) => ({\r\n\tComponent: TelcoCardsComponent,\r\n\tprops: args,\r\n})"
+                    "defaultValue": "(args: TelcoCardsComponent) => ({\n\tComponent: TelcoCardsComponent,\n\tprops: args,\n})"
                 }
             ],
             "src/stories/telco-list.stories.ts": [
@@ -3391,7 +3401,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TelcoListComponent>",
-                    "defaultValue": "(args: TelcoListComponent) => ({\r\n\tComponent: TelcoListComponent,\r\n\tprops: args,\r\n})"
+                    "defaultValue": "(args: TelcoListComponent) => ({\n\tComponent: TelcoListComponent,\n\tprops: args,\n})"
                 }
             ],
             "src/stories/telco-search.stories.ts": [
@@ -3413,7 +3423,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TelcoSearchComponent>",
-                    "defaultValue": "(args: TelcoSearchComponent) => ({\r\n\tComponent: TelcoSearchComponent,\r\n\tprops: args,\r\n})"
+                    "defaultValue": "(args: TelcoSearchComponent) => ({\n\tComponent: TelcoSearchComponent,\n\tprops: args,\n})"
                 }
             ],
             "src/stories/telco-table.stories.ts": [
@@ -3428,6 +3438,26 @@
                     "defaultValue": "Template.bind({})"
                 },
                 {
+                    "name": "data",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/telco-table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\n\t{position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},\n\t{position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},\n\t{position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},\n\t{position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},\n\t{position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},\n\t{position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},\n\t{position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},\n\t{position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},\n\t{position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},\n\t{position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},\n  ]"
+                },
+                {
+                    "name": "headings",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/telco-table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "['position', 'name', 'weight', 'symbol']"
+                },
+                {
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -3435,7 +3465,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TelcoTableComponent>",
-                    "defaultValue": "(args: TelcoTableComponent) => ({\r\n\tComponent: TelcoTableComponent,\r\n\tprops: args,\r\n})"
+                    "defaultValue": "(args: TelcoTableComponent) => ({\n\tComponent: TelcoTableComponent,\n\tprops: args,\n})"
                 }
             ],
             "src/app/app.module.ts": [
@@ -3447,7 +3477,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[\r\n\t{\r\n\t\tname: 'telco-cards',\r\n\t\tcomponent: TelcoCardsComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-button',\r\n\t\tcomponent: ButtonComponent,\r\n\t},\r\n\r\n\t{\r\n\t\tname: 'telco-list',\r\n\t\tcomponent: TelcoListComponent,\r\n\t},\r\n\t{\r\n\t\tname: 'telco-maps',\r\n\t\tcomponent: TelcoMapsComponent,\r\n\t},\r\n]"
+                    "defaultValue": "[\n\t{\n\t\tname: 'telco-cards',\n\t\tcomponent: TelcoCardsComponent,\n\t},\n\t{\n\t\tname: 'telco-button',\n\t\tcomponent: ButtonComponent,\n\t},\n\n\t{\n\t\tname: 'telco-list',\n\t\tcomponent: TelcoListComponent,\n\t},\n\t{\n\t\tname: 'telco-maps',\n\t\tcomponent: TelcoMapsComponent,\n\t},\n]"
                 }
             ],
             "src/test.ts": [
@@ -3471,18 +3501,6 @@
                     "type": "literal type"
                 }
             ],
-            "src/app/telco-table/telco-table.component.ts": [
-                {
-                    "name": "ELEMENT_DATA",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/telco-table/telco-table.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "InputDataInterFace[]",
-                    "defaultValue": "[\n\t{\n\t\tSiteName: 'Site Name 1',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2022',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 2',\n\t\tCountofAlarm: '09',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'Cell Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 3',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 4',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 5',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 6',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n\t{\n\t\tSiteName: 'Site Name 7',\n\t\tCountofAlarm: '08',\n\t\tTimestamp: {\n\t\t\tdate: '05 Jan,2021',\n\t\t\ttime: '10:00 AM',\n\t\t},\n\t\tRCA: {\n\t\t\ticonImg: '../../assets/table-icons/table-icon.svg',\n\t\t\tstatus: 'RAN - IP Connection Failure',\n\t\t},\n\t},\n]"
-                }
-            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -3492,7 +3510,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  production: true\r\n}"
+                    "defaultValue": "{\n  production: true\n}"
                 }
             ],
             "src/environments/environment.ts": [
@@ -3504,7 +3522,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  production: false\r\n}"
+                    "defaultValue": "{\n  production: false\n}"
                 }
             ],
             "src/app/telco-maps/telco-maps.component.ts": [
@@ -3546,7 +3564,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TelcoPieChartComponent>",
-                    "defaultValue": "(args: TelcoPieChartComponent) => ({\r\n\tprops: args,\r\n})"
+                    "defaultValue": "(args: TelcoPieChartComponent) => ({\n\tprops: args,\n})"
                 }
             ],
             "src/stories/telco-button.stories.ts": [
@@ -3568,7 +3586,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonComponent>",
-                    "defaultValue": "(args: ButtonComponent) => ({\r\n\tComponent: ButtonComponent,\r\n\tprops: args,\r\n})"
+                    "defaultValue": "(args: ButtonComponent) => ({\n\tComponent: ButtonComponent,\n\tprops: args,\n})"
                 }
             ]
         },
@@ -3809,26 +3827,7 @@
                 "linktype": "component",
                 "name": "TelcoTableComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/9",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/telco-table/telco-table.component.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "InputDataInterFace",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/telco-table/telco-table.component.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "ELEMENT_DATA",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/12",
                 "status": "low"
             },
             {
@@ -3857,6 +3856,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Bar",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-bar-chart.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Line",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -4077,6 +4086,26 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "BasicTable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "data",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/telco-table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "headings",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

@@ -23,7 +23,7 @@ const Template: Story<TelcoListComponent> = (args: TelcoListComponent) => ({
 
 export const Basic = Template.bind({});
 Basic.args = {
-	placeholder: 'Select Severity',
+	placeholder: 'Select value',
 	dropdownlist: [
 		{
 			name: 'All',
