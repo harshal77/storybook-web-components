@@ -11,7 +11,7 @@ Run `ng generate component component-name` to generate a new component.
 
 ## Build
 
-Run `npm run storybook` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `npm run build:web-component` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Further help
 https://storybook.js.org/docs/angular/get-started/introduction
