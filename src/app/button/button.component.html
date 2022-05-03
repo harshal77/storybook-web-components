@@ -1,14 +1,8 @@
-
-<button [ngStyle]="{
-		'background-color': backgroundColor,
-    'color':textColor,
-    'height':buttonHeight
-	}"
-  [ngClass]="{
-		rounded: roundedButton
-	}"
-
-fxLayout="{{!iconRight ? 'row' : 'row-reverse'}}"  fxLayoutAlign="center center" fxLayoutGap="1rem" (click)="buttonClicked()">
-  <mat-icon *ngIf="displayIcon" >{{iconLink}}</mat-icon>
-  <p [ngStyle]="{ 'font-size': buttonFontSize }">{{title}}</p>
+<button class="center" 
+  [ngStyle]="{ 'background-color': backgroundColor, 'color':textColor, 'height':buttonHeight}" 
+  [ngClass]="{ rounded: roundedButton, pointer: !isDisabled, disabled: isDisabled}" 
+  (click)="buttonClicked()" 
+  [disabled]="isDisabled">
+  <mat-icon class="margin-5" *ngIf="displayIcon">{{iconLink}}</mat-icon>
+  <span [ngStyle]="{ 'font-size': buttonFontSize }">{{title}}</span>
 </button>
